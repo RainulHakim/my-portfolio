@@ -1,26 +1,172 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.065 0 0);
+  --foreground: oklch(0.95 0 0);
+  --card: oklch(0.10 0 0);
+  --card-foreground: oklch(0.95 0 0);
+  --popover: oklch(0.10 0 0);
+  --popover-foreground: oklch(0.95 0 0);
+  --primary: oklch(0.60 0.24 275);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.14 0 0);
+  --secondary-foreground: oklch(0.95 0 0);
+  --muted: oklch(0.13 0 0);
+  --muted-foreground: oklch(0.50 0 0);
+  --accent: oklch(0.14 0 0);
+  --accent-foreground: oklch(0.95 0 0);
+  --destructive: oklch(0.65 0.22 25);
+  --border: oklch(0.20 0 0);
+  --input: oklch(0.20 0 0);
+  --ring: oklch(0.60 0.24 275);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--background); }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(0.25 0 0);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: oklch(0.35 0 0); }
+  ::selection {
+    background-color: oklch(0.60 0.24 275 / 0.28);
+    color: oklch(0.98 0 0);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ─── Gradient text utility ─────────────────────────────────────────────── */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
 }
+
+@layer utilities {
+  .gradient-text {
+    background: linear-gradient(135deg, #a78bfa, #818cf8, #38bdf8, #c084fc, #a78bfa);
+    background-size: 300% 300%;
+    animation: gradient-shift 5s ease infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .gradient-text-warm {
+    background: linear-gradient(135deg, #f472b6 0%, #a78bfa 50%, #818cf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* ─── Background orb animations ─────────────────────────────────────────── */
+@keyframes orb-drift-1 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  25%       { transform: translate(60px, -80px) scale(1.08); }
+  50%       { transform: translate(20px, 60px) scale(0.94); }
+  75%       { transform: translate(-50px, -30px) scale(1.04); }
+}
+@keyframes orb-drift-2 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33%       { transform: translate(-70px, 50px) scale(1.06); }
+  66%       { transform: translate(40px, -60px) scale(0.92); }
+}
+@keyframes orb-drift-3 {
+  0%, 100% { transform: translate(0px, 0px); }
+  50%       { transform: translate(80px, 40px); }
+}
+
+.orb-1 { animation: orb-drift-1 22s ease-in-out infinite; }
+.orb-2 { animation: orb-drift-2 28s ease-in-out infinite; }
+.orb-3 { animation: orb-drift-3 18s ease-in-out infinite; }
+
+/* ─── Tech marquee ───────────────────────────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Shimmer sweep (browser preview hover) ─────────────────────────────── */
+@keyframes shimmer-sweep {
+  from { transform: translateX(-100%) skewX(-12deg); }
+  to   { transform: translateX(250%) skewX(-12deg); }
+}
+.shimmer-on-hover:hover .shimmer-sweep {
+  animation: shimmer-sweep 0.7s ease forwards;
+}
+
+/* ─── Glow pulse (stat numbers) ─────────────────────────────────────────── */
+@keyframes glow-pulse {
+  0%, 100% { text-shadow: 0 0 20px rgba(167,139,250,0.4); }
+  50%       { text-shadow: 0 0 40px rgba(167,139,250,0.8), 0 0 80px rgba(99,102,241,0.3); }
+}
+.glow-on-view { animation: glow-pulse 3s ease-in-out infinite; }
+
+/* ─── Floating hero particles ────────────────────────────────────────────── */
+@keyframes float-particle {
+  from { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.25; }
+  to   { transform: translateY(-28px) translateX(14px) scale(1.4); opacity: 0.65; }
+}
+
+/* ─── Scroll indicator ───────────────────────────────────────────────────── */
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.3; }
+  50%       { transform: translateY(9px); opacity: 0.85; }
+}
+.scroll-indicator { animation: scroll-bounce 2s ease-in-out infinite; }
+
+/* ─── Fourth background orb ─────────────────────────────────────────────── */
+@keyframes orb-drift-4 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  40%       { transform: translate(55px, -45px) scale(1.06); }
+  80%       { transform: translate(-35px, 35px) scale(0.96); }
+}
+.orb-4 { animation: orb-drift-4 25s ease-in-out infinite; }
