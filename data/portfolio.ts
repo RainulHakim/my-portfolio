@@ -7,7 +7,7 @@ export const siteConfig = {
   email: "rahakim@davidson.edu",
   github: "https://github.com/RainulHakim",
   linkedin: "https://linkedin.com/in/rainulhakim",
-  resumeUrl: "/Resume of Rainul (Resume).pdf",
+  resumeUrl: "/Rainul Hakim, my resume(editable).pdf",
 
   heroHeadline: {
     before: "I design, build,",
@@ -77,7 +77,7 @@ export const projects: Project[] = [
     name: "AlternAte",
     impact:
       "AI-powered nutrition assistant that analyzes any meal, suggests smarter swaps, scores your full-day diet, and gamifies healthy eating with a social leaderboard.",
-    tech: ["Next.js", "TypeScript", "AI / LLM", "Server-side API", "Framer Motion"],
+    tech: ["React", "Vite", "Vercel Serverless", "Gemini API", "AI / LLM"],
     bullets: [
       "Analyzes any typed meal in seconds — returns calories, macros (protein, carbs, fat), fiber, sugar, sodium, and health flags like high sodium or low fiber",
       "Generates 3 AI-powered smarter swaps tailored to the user's goal: weight loss, muscle gain, heart health, or balanced eating",
@@ -265,42 +265,34 @@ export type SkillGroup = {
 
 export const skillGroups: SkillGroup[] = [
   {
-    label: "Design",
-    skills: [
-      { name: "Canva", level: 95 },
-      { name: "Poster Design", level: 92 },
-      { name: "Infographic Design", level: 88 },
-      { name: "Brand Identity", level: 85 },
-      { name: "Visual Storytelling", level: 88 },
-    ],
-  },
-  {
-    label: "Web",
-    skills: [
-      { name: "WordPress", level: 82 },
-      { name: "HTML / CSS", level: 75 },
-      { name: "Web Design", level: 85 },
-      { name: "Accessibility", level: 78 },
-      { name: "Google Workspace", level: 90 },
-    ],
-  },
-  {
-    label: "Business",
-    skills: [
-      { name: "Social Media Mgmt", level: 90 },
-      { name: "Marketing", level: 85 },
-      { name: "Event Planning", level: 88 },
-      { name: "Sales", level: 80 },
-      { name: "Partnership Dev.", level: 82 },
-    ],
-  },
-  {
     label: "Languages",
     skills: [
-      { name: "English", level: 100 },
-      { name: "Bangla", level: 100 },
-      { name: "Hindi", level: 70 },
-      { name: "Urdu", level: 65 },
+      { name: "JavaScript", level: 85 },
+      { name: "Python", level: 75 },
+      { name: "Java", level: 72 },
+    ],
+  },
+  {
+    label: "Frontend",
+    skills: [
+      { name: "React", level: 88 },
+      { name: "HTML", level: 90 },
+      { name: "CSS", level: 85 },
+    ],
+  },
+  {
+    label: "Backend",
+    skills: [
+      { name: "Node.js", level: 78 },
+      { name: "Vercel Serverless", level: 80 },
+    ],
+  },
+  {
+    label: "Tools",
+    skills: [
+      { name: "Git", level: 85 },
+      { name: "GitHub", level: 85 },
+      { name: "VS Code", level: 92 },
     ],
   },
 ];
@@ -308,20 +300,20 @@ export const skillGroups: SkillGroup[] = [
 // ─── Tech marquee ────────────────────────────────────────────────────────────
 
 export const marqueeItems = [
-  "Web Design",
-  "Canva",
+  "JavaScript",
+  "React",
+  "Python",
+  "Java",
+  "Node.js",
+  "HTML",
+  "CSS",
+  "Vercel Serverless",
+  "Gemini API",
+  "Git",
+  "GitHub",
+  "VS Code",
+  "REST APIs",
+  "Vite",
   "WordPress",
-  "HTML / CSS",
-  "Brand Identity",
-  "Social Media",
-  "Leadership",
-  "Event Planning",
-  "Marketing",
-  "Google Workspace",
-  "Poster Design",
-  "Community Outreach",
-  "Sales",
-  "Partnership Dev",
-  "Figma",
-  "Accessibility",
+  "AI / LLM",
 ];
