@@ -53,7 +53,11 @@ function BrowserPreview({ project }: { project: Project }) {
         <img
           src={project.previewImage}
           alt={`${project.name} preview`}
-          className="absolute left-0 right-0 bottom-0 w-full object-cover"
+          className={`absolute left-0 right-0 bottom-0 w-full ${
+            project.previewImageContain
+              ? "object-contain p-8"
+              : "object-cover"
+          }`}
           style={{ top: "32px", height: "calc(100% - 32px)" }}
         />
       ) : (

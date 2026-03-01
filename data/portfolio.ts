@@ -7,7 +7,7 @@ export const siteConfig = {
   email: "rahakim@davidson.edu",
   github: "https://github.com/RainulHakim",
   linkedin: "https://linkedin.com/in/rainulhakim",
-  resumeUrl: "/Resume_of_Rainul_main_20260118-32-2mn0l020260118-32-97f7je.pdf",
+  resumeUrl: "/Resume of Rainul (Resume).pdf",
 
   heroHeadline: {
     before: "I design, build,",
@@ -47,6 +47,8 @@ export type Project = {
   previewGradient: string;
   /** Optional image path or URL — shown as the browser preview instead of abstract sketch */
   previewImage?: string;
+  /** Use object-contain (centered) instead of object-cover — better for logos */
+  previewImageContain?: boolean;
   /** Multiple live URLs for projects with more than one site */
   additionalUrls?: { label: string; url: string }[];
 };
@@ -104,6 +106,7 @@ export const projects: Project[] = [
     githubUrl: "#",
     previewGradient:
       "linear-gradient(135deg, #0f172a 0%, #1e3a5f 40%, #1d4ed8 75%, #60a5fa 100%)",
+    previewImage: "/Andrew Rippeon preview.png",
     additionalUrls: [
       { label: "Dr. Rippeon", url: "https://eng.andrewrippeon.com/" },
       { label: "Dr. Campbell", url: "https://english.shireencampbell.com/" },
@@ -125,10 +128,11 @@ export const projects: Project[] = [
       "Secured 10,000+ BDT in funding through brand partnerships and collaborated with local authorities on public health initiatives",
       "Organized free medical camps providing check-ups, medicines, and snacks — achieving a 99% participant satisfaction rate",
     ],
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: "https://be-well-theta.vercel.app/",
+    githubUrl: "https://github.com/RainulHakim/BeWell",
     previewGradient:
       "linear-gradient(135deg, #052e16 0%, #14532d 40%, #16a34a 75%, #86efac 100%)",
+    previewImage: "/BeWell Cover.png",
   },
   {
     name: "Travel Time International",
@@ -145,6 +149,8 @@ export const projects: Project[] = [
     githubUrl: "#",
     previewGradient:
       "linear-gradient(135deg, #1c0533 0%, #4a0e8f 40%, #7c3aed 75%, #c4b5fd 100%)",
+    previewImage: "/TravelTimeint.jpeg",
+    previewImageContain: true,
   },
 ];
 
