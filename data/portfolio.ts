@@ -74,6 +74,22 @@ export const projects: Project[] = [
       "https://hurthub.davidson.edu/wp-content/uploads/2025/11/IdeaSprintWinner-Elijah-Arrington-Photography-354-scaled.jpg",
   },
   {
+    name: "Naruto Shadow Clone Jutsu",
+    impact:
+      "Real-time in-browser gesture recognition — perform a hand sign on webcam and watch shadow clones of yourself appear with smoke effects. Full ML pipeline, no backend.",
+    tech: ["JavaScript", "TensorFlow.js", "MediaPipe", "Canvas API", "Machine Learning"],
+    bullets: [
+      "Built a full ML pipeline that runs entirely in the browser — MediaPipe Holistic extracts 126 hand landmark coordinates per frame, which feed into a TensorFlow.js neural network trained on custom gesture samples",
+      "Normalized hand landmarks by wrist position and scale so the model learns gesture shape independent of hand size or distance from the camera",
+      "Used MediaPipe Selfie Segmentation to cut out my body silhouette, then rendered it multiple times at staggered positions and scales using the HTML Canvas API to simulate shadow clones",
+      "Built a full in-browser training UI — record positive/negative samples, train a binary classifier with Dropout regularization, export and load the model without any server",
+    ],
+    liveUrl: "https://github.com/RainulHakim/narutoshadowclone",
+    githubUrl: "https://github.com/RainulHakim/narutoshadowclone",
+    previewGradient:
+      "linear-gradient(135deg, #1a0a00 0%, #3d1a00 35%, #c2410c 70%, #fb923c 100%)",
+  },
+  {
     name: "AlternAte",
     impact:
       "AI-powered nutrition assistant that analyzes any meal, suggests smarter swaps, scores your full-day diet, and gamifies healthy eating with a social leaderboard.",
