@@ -88,6 +88,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/RainulHakim/narutoshadowclone",
     previewGradient:
       "linear-gradient(135deg, #1a0a00 0%, #3d1a00 35%, #c2410c 70%, #fb923c 100%)",
+    previewImage: "/Naruto .jpeg",
   },
   {
     name: "AlternAte",
