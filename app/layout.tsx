@@ -15,13 +15,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Rainul Hakim — Web Designer & CS Student",
+  title: "Rainul Hakim — ML Researcher & CS Student",
   description:
-    "CS freshman at Davidson College — web designer, graphic designer, and community builder. Open to Summer 2026 internships.",
+    "CS student at Davidson College — machine learning researcher at FRIB, data consultant, designer, and community builder. Open to Summer 2027 internships.",
   openGraph: {
-    title: "Rainul Hakim — Web Designer & CS Student",
+    title: "Rainul Hakim — ML Researcher & CS Student",
     description:
-      "CS freshman at Davidson College — web designer, graphic designer, and community builder.",
+      "CS student at Davidson College — machine learning researcher at FRIB, data consultant, and designer.",
     type: "website",
   },
 };

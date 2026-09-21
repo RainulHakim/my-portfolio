@@ -1,13 +1,13 @@
 export const siteConfig = {
   name: "Rainul Hakim",
-  role: "Web Designer & CS Student",
-  tagline: "I design digital experiences that connect and inspire.",
+  role: "ML Researcher & CS Student",
+  tagline: "I build with data — from particle detectors to campus apps.",
   subHeadline:
-    "CS freshman at Davidson College — passionate about web design, visual storytelling, and building community-driven projects.",
+    "CS student at Davidson College — machine learning researcher at FRIB, data consultant, and designer building community-driven projects.",
   email: "rahakim@davidson.edu",
   github: "https://github.com/RainulHakim",
-  linkedin: "https://linkedin.com/in/rainulhakim",
-  resumeUrl: "/Rainul Hakim, my resume(editable).pdf",
+  linkedin: "https://www.linkedin.com/in/rainulhakim/",
+  resumeUrl: "/Rainul_Hakim_Resume.pdf",
 
   heroHeadline: {
     before: "I design, build,",
@@ -16,22 +16,22 @@ export const siteConfig = {
   },
 
   typewriterRoles: [
-    "Web Designer",
-    "Graphic Designer",
+    "ML Researcher @ FRIB",
     "CS @ Davidson College",
-    "Community Builder",
+    "DataCats Consultant",
+    "Designer & Community Builder",
   ],
 
-  availabilityText: "Open to Summer 2026 Internships",
+  availabilityText: "Open to Summer 2027 Internships",
 
   contactBlurb:
-    "I'm a CS freshman at Davidson College actively seeking internship opportunities in web design, marketing, and community-driven roles. If you're hiring or just want to connect, I'd love to hear from you.",
+    "I'm a CS student at Davidson College seeking Summer 2027 internships in machine learning, data science, and software engineering. If you're hiring or just want to talk research, data, or design, I'd love to hear from you.",
 };
 
 export const heroStats = [
-  { value: 40, suffix: "+", label: "Designs created" },
+  { value: 30, suffix: "+", label: "Students & faculty advised" },
   { value: 1000, suffix: "+", label: "Community members reached" },
-  { value: 99, suffix: "%", label: "Satisfaction rate" },
+  { value: 40, suffix: "+", label: "Designs created" },
 ];
 
 // ─── Projects ──────────────────────────────────────────────────────────────
@@ -55,6 +55,54 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    name: "Foundation Models for AT-TPC Data",
+    impact:
+      "Machine learning research at the Facility for Rare Isotope Beams (FRIB) — applying contrastive self-supervised learning with a DGCNN encoder to nuclear physics detector data, working toward a foundation model for TPC analysis.",
+    tech: [
+      "PyTorch",
+      "PyTorch Geometric",
+      "Graph Neural Networks",
+      "Self-Supervised Learning",
+      "Point Clouds",
+      "scikit-learn",
+    ],
+    bullets: [
+      "Worked under Dr. Michelle Kuchera and Dr. Raghuram Ramanujan in collaboration with FRIB at Michigan State University, applying ML to Active Target Time Projection Chamber (AT-TPC) data",
+      "Trained a deep neural network to learn meaningful representations of particle collision events from raw 3D point cloud data without requiring manual labels during training",
+      "Evaluated learned representations through linear probing and conducted systematic augmentation ablation experiments to improve model performance",
+      "Gained hands-on experience with geometric deep learning, graph neural networks, and scientific computing on a high-performance computing cluster",
+      "Contributed reproducible, documented code to a shared cross-institutional codebase within the ALPhA collaboration",
+    ],
+    liveUrl: "#",
+    githubUrl: "#",
+    previewGradient:
+      "linear-gradient(135deg, #020617 0%, #0c4a6e 40%, #0369a1 75%, #38bdf8 100%)",
+    previewImage: "/frib-group.jpeg",
+  },
+  {
+    name: "Naruto Shadow Clone",
+    impact:
+      "In-browser hand gesture recognition — a gesture-triggered effects app running fully client-side at ~30 fps with no backend. Throw the Naruto shadow clone hand sign and it segments you out and renders your clones.",
+    tech: [
+      "JavaScript",
+      "TensorFlow.js",
+      "MediaPipe",
+      "Computer Vision",
+      "Canvas API",
+    ],
+    bullets: [
+      "MediaPipe Holistic extracts 126 hand-landmark coordinates per frame and feeds them to a TensorFlow.js neural network, all client-side with no server round-trip",
+      "Normalized landmarks by wrist position and scale for hand-size invariance, so the classifier works across different users and distances",
+      "Trained a binary classifier (Dropout 0.3, 50 epochs, 0.97 confidence threshold) through a custom in-browser training UI",
+      "Segmented the user's silhouette with MediaPipe Selfie Segmentation and rendered multiple clones with smoke effects on Canvas",
+    ],
+    liveUrl: "#",
+    githubUrl: "#",
+    previewGradient:
+      "linear-gradient(135deg, #1a0505 0%, #7f1d1d 40%, #ea580c 75%, #fb923c 100%)",
+    previewImage: "/naruto-shadow-clone.jpeg",
+  },
+  {
     name: "Left No Crumbs",
     impact:
       "IdeaSprint Winner ($1,000) — campus app that alerts Davidson students to free catered meals via push notifications on Davidson One.",
@@ -62,7 +110,7 @@ export const projects: Project[] = [
     bullets: [
       "Won Davidson College's IdeaSprint competition, beating 4 finalist teams for a $1,000 prize at the 2025 Innovation Showcase",
       "Designed a solution to reduce campus food waste by surfacing real-time alerts for available free catered meals",
-      "Collaborated with a 5-person interdisciplinary team on pitching, prototyping, and UX design under competition time pressure",
+      "Built the pitch deck, business model, and technical roadmap in 4 weeks with a 5-person interdisciplinary team",
       "Presented to Davidson Entrepreneurship Network judges — recognized as the most impactful student venture of the showcase",
     ],
     liveUrl:
@@ -70,8 +118,7 @@ export const projects: Project[] = [
     githubUrl: "#",
     previewGradient:
       "linear-gradient(135deg, #1a0f00 0%, #451a03 40%, #78350f 75%, #d97706 100%)",
-    previewImage:
-      "https://hurthub.davidson.edu/wp-content/uploads/2025/11/IdeaSprintWinner-Elijah-Arrington-Photography-354-scaled.jpg",
+    previewImage: "/ideasprint.png",
   },
   {
     name: "AlternAte",
@@ -165,6 +212,38 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
+    role: "Machine Learning Research Assistant",
+    company:
+      "ALPhA Lab, Davidson College — in collaboration with FRIB, Michigan State University",
+    dates: "May – Jul 2026",
+    bullets: [
+      "Worked under the guidance of Dr. Michelle Kuchera and Dr. Raghuram Ramanujan, applying machine learning to nuclear physics detector data from the Active Target Time Projection Chamber (AT-TPC)",
+      "Applied contrastive self-supervised learning with a DGCNN encoder to AT-TPC data, working toward a foundation model for TPC data analysis adaptable to a variety of downstream physics tasks",
+      "Trained a deep neural network to learn meaningful representations of particle collision events from raw 3D point cloud data without requiring manual labels during training",
+      "Evaluated learned representations through linear probing and conducted systematic augmentation ablation experiments to improve model performance",
+      "Developed proficiency in PyTorch, PyTorch Geometric, NumPy, and scikit-learn while working with real experimental physics data on a high-performance computing cluster",
+      "Collaborated with a cross-institutional research team, contributing reproducible, documented code to a shared codebase within the ALPhA collaboration",
+    ],
+  },
+  {
+    role: "Student Consultant — Data CATS",
+    company: "Davidson College (Consulting, Analytics, Tutoring Services)",
+    dates: "Aug 2026 – Present",
+    bullets: [
+      "Consult and tutor students, faculty, and staff on data analytics — from framing the question through analysis and visualization",
+      "Guide students, faculty, and local companies through data-intensive research and projects, helping 30+ people with their data work",
+    ],
+  },
+  {
+    role: "Student Consultant — The Hurt Hub@Davidson",
+    company: "Davidson College",
+    dates: "Aug 2026 – Present",
+    bullets: [
+      "Advise a client partner on building an early-stage AI startup through Davidson's entrepreneurship hub",
+      "Focus on product development — shaping what gets built and in what order",
+    ],
+  },
+  {
     role: "Student Web Designer",
     company: "Davidson College",
     dates: "Oct 2025 – Present",
@@ -229,11 +308,35 @@ export const involvement: Involvement[] = [
     award: true,
   },
   {
-    title: "E-Board Member",
+    title: "Resident Advisor",
+    organization: "Davidson College",
+    dates: "Aug 2026 – Present",
+    description:
+      "Support 30+ residents through community-building programming, conflict resolution, and crisis response.",
+    tags: ["Leadership", "Community", "Residence Life"],
+  },
+  {
+    title: "Treasurer",
+    organization: "Davidson International Association",
+    dates: "2026 – Present",
+    description:
+      "Manage the budget for the organization supporting Davidson's international student community, overseeing event funding and year-round programming.",
+    tags: ["Leadership", "Finance", "Community"],
+  },
+  {
+    title: "Secretary",
+    organization: "Association for Computing Machinery (ACM), Davidson College",
+    dates: "2026 – Present",
+    description:
+      "Keep Davidson's ACM student chapter running — handling records, communications, and coordination for chapter events and initiatives.",
+    tags: ["Leadership", "Computing", "Events"],
+  },
+  {
+    title: "Event Coordinator",
     organization: "Davidson Entrepreneurship Club",
     dates: "Nov 2025 – Present",
     description:
-      "Designed visual content to support event promotion and student engagement. Assist in planning and coordinating entrepreneurship-focused events and initiatives at Davidson College.",
+      "Plan and coordinate entrepreneurship-focused events and initiatives at Davidson College, and design visual content to support event promotion and student engagement.",
     tags: ["Leadership", "Events", "Design"],
   },
   {
@@ -267,24 +370,32 @@ export const skillGroups: SkillGroup[] = [
   {
     label: "Languages",
     skills: [
+      { name: "Python", level: 88 },
+      { name: "Java", level: 75 },
       { name: "JavaScript", level: 85 },
-      { name: "Python", level: 75 },
-      { name: "Java", level: 72 },
+      { name: "SQL", level: 75 },
+      { name: "R", level: 70 },
     ],
   },
   {
-    label: "Frontend",
+    label: "ML / Scientific Computing",
+    skills: [
+      { name: "PyTorch", level: 82 },
+      { name: "PyTorch Geometric", level: 78 },
+      { name: "TensorFlow.js", level: 78 },
+      { name: "MediaPipe", level: 75 },
+      { name: "NumPy", level: 85 },
+      { name: "scikit-learn", level: 80 },
+    ],
+  },
+  {
+    label: "Web",
     skills: [
       { name: "React", level: 88 },
-      { name: "HTML", level: 90 },
-      { name: "CSS", level: 85 },
-    ],
-  },
-  {
-    label: "Backend",
-    skills: [
       { name: "Node.js", level: 78 },
       { name: "Vercel Serverless", level: 80 },
+      { name: "HTML", level: 90 },
+      { name: "CSS", level: 85 },
     ],
   },
   {
@@ -293,6 +404,7 @@ export const skillGroups: SkillGroup[] = [
       { name: "Git", level: 85 },
       { name: "GitHub", level: 85 },
       { name: "VS Code", level: 92 },
+      { name: "HPC Clusters", level: 72 },
     ],
   },
 ];
@@ -300,20 +412,28 @@ export const skillGroups: SkillGroup[] = [
 // ─── Tech marquee ────────────────────────────────────────────────────────────
 
 export const marqueeItems = [
+  "Python",
+  "PyTorch",
+  "PyTorch Geometric",
+  "TensorFlow.js",
+  "MediaPipe",
+  "Graph Neural Networks",
+  "Self-Supervised Learning",
+  "NumPy",
+  "scikit-learn",
+  "SQL",
+  "R",
+  "Java",
   "JavaScript",
   "React",
-  "Python",
-  "Java",
   "Node.js",
   "HTML",
   "CSS",
   "Vercel Serverless",
   "Gemini API",
+  "Computer Vision",
   "Git",
   "GitHub",
+  "HPC Clusters",
   "VS Code",
-  "REST APIs",
-  "Vite",
-  "WordPress",
-  "AI / LLM",
 ];
