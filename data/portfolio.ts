@@ -80,29 +80,6 @@ export const projects: Project[] = [
     previewImage: "/frib-group.jpeg",
   },
   {
-    name: "Naruto Shadow Clone",
-    impact:
-      "In-browser hand gesture recognition — a gesture-triggered effects app running fully client-side at ~30 fps with no backend. Throw the Naruto shadow clone hand sign and it segments you out and renders your clones.",
-    tech: [
-      "JavaScript",
-      "TensorFlow.js",
-      "MediaPipe",
-      "Computer Vision",
-      "Canvas API",
-    ],
-    bullets: [
-      "MediaPipe Holistic extracts 126 hand-landmark coordinates per frame and feeds them to a TensorFlow.js neural network, all client-side with no server round-trip",
-      "Normalized landmarks by wrist position and scale for hand-size invariance, so the classifier works across different users and distances",
-      "Trained a binary classifier (Dropout 0.3, 50 epochs, 0.97 confidence threshold) through a custom in-browser training UI",
-      "Segmented the user's silhouette with MediaPipe Selfie Segmentation and rendered multiple clones with smoke effects on Canvas",
-    ],
-    liveUrl: "#",
-    githubUrl: "#",
-    previewGradient:
-      "linear-gradient(135deg, #1a0505 0%, #7f1d1d 40%, #ea580c 75%, #fb923c 100%)",
-    previewImage: "/naruto-shadow-clone.jpeg",
-  },
-  {
     name: "Left No Crumbs",
     impact:
       "IdeaSprint Winner ($1,000) — campus app that alerts Davidson students to free catered meals via push notifications on Davidson One.",
@@ -129,13 +106,13 @@ export const projects: Project[] = [
       "Built a full ML pipeline that runs entirely in the browser — MediaPipe Holistic extracts 126 hand landmark coordinates per frame, which feed into a TensorFlow.js neural network trained on custom gesture samples",
       "Normalized hand landmarks by wrist position and scale so the model learns gesture shape independent of hand size or distance from the camera",
       "Used MediaPipe Selfie Segmentation to cut out my body silhouette, then rendered it multiple times at staggered positions and scales using the HTML Canvas API to simulate shadow clones",
-      "Built a full in-browser training UI — record positive/negative samples, train a binary classifier with Dropout regularization, export and load the model without any server",
+      "Built a full in-browser training UI — record positive/negative samples, train a binary classifier (Dropout 0.3, 50 epochs, 0.97 confidence threshold), export and load the model without any server",
     ],
     liveUrl: "https://github.com/RainulHakim/narutoshadowclone",
     githubUrl: "https://github.com/RainulHakim/narutoshadowclone",
     previewGradient:
       "linear-gradient(135deg, #1a0a00 0%, #3d1a00 35%, #c2410c 70%, #fb923c 100%)",
-    previewImage: "/Naruto .jpeg",
+    previewImage: "/naruto-shadow-clone.jpeg",
   },
   {
     name: "AlternAte",
