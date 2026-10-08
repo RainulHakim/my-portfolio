@@ -7,7 +7,7 @@ export const siteConfig = {
   email: "rahakim@davidson.edu",
   github: "https://github.com/RainulHakim",
   linkedin: "https://www.linkedin.com/in/rainulhakim/",
-  resumeUrl: "/Rainul_Hakim_Resume.pdf",
+  resumeUrl: "/Rainul-Hakim-Resume.pdf",
 
   heroHeadline: {
     before: "I design, build,",
