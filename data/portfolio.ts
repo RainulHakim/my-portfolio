@@ -49,6 +49,8 @@ export type Project = {
   previewImage?: string;
   /** Use object-contain (centered) instead of object-cover — better for logos */
   previewImageContain?: boolean;
+  /** Text for the mock address bar when there's no live URL */
+  previewLabel?: string;
   /** Multiple live URLs for projects with more than one site */
   additionalUrls?: { label: string; url: string }[];
 };
@@ -77,30 +79,8 @@ export const projects: Project[] = [
     githubUrl: "#",
     previewGradient:
       "linear-gradient(135deg, #020617 0%, #0c4a6e 40%, #0369a1 75%, #38bdf8 100%)",
-    previewImage: "/frib-group.jpeg",
-  },
-  {
-    name: "Naruto Shadow Clone",
-    impact:
-      "In-browser hand gesture recognition — a gesture-triggered effects app running fully client-side at ~30 fps with no backend. Throw the Naruto shadow clone hand sign and it segments you out and renders your clones.",
-    tech: [
-      "JavaScript",
-      "TensorFlow.js",
-      "MediaPipe",
-      "Computer Vision",
-      "Canvas API",
-    ],
-    bullets: [
-      "MediaPipe Holistic extracts 126 hand-landmark coordinates per frame and feeds them to a TensorFlow.js neural network, all client-side with no server round-trip",
-      "Normalized landmarks by wrist position and scale for hand-size invariance, so the classifier works across different users and distances",
-      "Trained a binary classifier (Dropout 0.3, 50 epochs, 0.97 confidence threshold) through a custom in-browser training UI",
-      "Segmented the user's silhouette with MediaPipe Selfie Segmentation and rendered multiple clones with smoke effects on Canvas",
-    ],
-    liveUrl: "#",
-    githubUrl: "#",
-    previewGradient:
-      "linear-gradient(135deg, #1a0505 0%, #7f1d1d 40%, #ea580c 75%, #fb923c 100%)",
-    previewImage: "/naruto-shadow-clone.jpeg",
+    previewImage: "/frib-group.webp",
+    previewLabel: "Research · ALPhA Lab × FRIB",
   },
   {
     name: "Left No Crumbs",
@@ -108,7 +88,7 @@ export const projects: Project[] = [
       "IdeaSprint Winner ($1,000) — campus app that alerts Davidson students to free catered meals via push notifications on Davidson One.",
     tech: ["Mobile App", "Push Notifications", "UX Design", "Davidson One", "Entrepreneurship"],
     bullets: [
-      "Won Davidson College's IdeaSprint competition, beating 4 finalist teams for a $1,000 prize at the 2025 Innovation Showcase",
+      "Won Davidson College's IdeaSprint competition out of 5 finalist teams, taking the $1,000 prize at the 2025 Innovation Showcase",
       "Designed a solution to reduce campus food waste by surfacing real-time alerts for available free catered meals",
       "Built the pitch deck, business model, and technical roadmap in 4 weeks with a 5-person interdisciplinary team",
       "Presented to Davidson Entrepreneurship Network judges — recognized as the most impactful student venture of the showcase",
@@ -118,12 +98,12 @@ export const projects: Project[] = [
     githubUrl: "#",
     previewGradient:
       "linear-gradient(135deg, #1a0f00 0%, #451a03 40%, #78350f 75%, #d97706 100%)",
-    previewImage: "/ideasprint.png",
+    previewImage: "/ideasprint.webp",
   },
   {
     name: "Naruto Shadow Clone Jutsu",
     impact:
-      "Real-time in-browser gesture recognition — perform a hand sign on webcam and watch shadow clones of yourself appear with smoke effects. Full ML pipeline, no backend.",
+      "Real-time in-browser gesture recognition — perform a hand sign on webcam and watch shadow clones of yourself appear with smoke effects. Full ML pipeline running client-side at ~30 fps, no backend.",
     tech: ["JavaScript", "TensorFlow.js", "MediaPipe", "Canvas API", "Machine Learning"],
     bullets: [
       "Built a full ML pipeline that runs entirely in the browser — MediaPipe Holistic extracts 126 hand landmark coordinates per frame, which feed into a TensorFlow.js neural network trained on custom gesture samples",
@@ -135,7 +115,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/RainulHakim/narutoshadowclone",
     previewGradient:
       "linear-gradient(135deg, #1a0a00 0%, #3d1a00 35%, #c2410c 70%, #fb923c 100%)",
-    previewImage: "/Naruto .jpeg",
+    previewImage: "/naruto-shadow-clone.jpeg",
   },
   {
     name: "AlternAte",
@@ -153,7 +133,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/RainulHakim/alternate-app",
     previewGradient:
       "linear-gradient(135deg, #041f1e 0%, #065f46 35%, #059669 65%, #34d399 100%)",
-    previewImage: "/AlternAte-preview.png",
+    previewImage: "/alternate-preview.webp",
   },
   {
     name: "Faculty Websites",
@@ -170,7 +150,7 @@ export const projects: Project[] = [
     githubUrl: "#",
     previewGradient:
       "linear-gradient(135deg, #0f172a 0%, #1e3a5f 40%, #1d4ed8 75%, #60a5fa 100%)",
-    previewImage: "/Andrew Rippeon preview.png",
+    previewImage: "/rippeon-preview.webp",
     additionalUrls: [
       { label: "Dr. Rippeon", url: "https://eng.andrewrippeon.com/" },
       { label: "Dr. Campbell", url: "https://english.shireencampbell.com/" },
@@ -196,7 +176,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/RainulHakim/BeWell",
     previewGradient:
       "linear-gradient(135deg, #052e16 0%, #14532d 40%, #16a34a 75%, #86efac 100%)",
-    previewImage: "/BeWell Cover.png",
+    previewImage: "/bewell-cover.webp",
   },
   {
     name: "Travel Time International",
@@ -213,7 +193,8 @@ export const projects: Project[] = [
     githubUrl: "#",
     previewGradient:
       "linear-gradient(135deg, #1c0533 0%, #4a0e8f 40%, #7c3aed 75%, #c4b5fd 100%)",
-    previewImage: "/TravelTimeint.jpeg",
+    previewImage: "/travel-time.webp",
+    previewLabel: "Brand identity · Travel Time International",
     previewImageContain: true,
   },
 ];
@@ -265,7 +246,7 @@ export const experience: Experience[] = [
     company: "Davidson College",
     dates: "Oct 2025 – Present",
     bullets: [
-      "Designed and developed a faculty personal website to enhance professional online presence, usability, and accessibility",
+      "Designed and developed two faculty personal websites to enhance professional online presence, usability, and accessibility",
       "Collaborated with faculty to gather requirements, incorporate feedback, and deliver user-centered web solutions",
     ],
   },
@@ -319,7 +300,7 @@ export const involvement: Involvement[] = [
     organization: "Davidson Entrepreneurship Network",
     dates: "2025",
     description:
-      "Won Davidson College's IdeaSprint competition with 'Left No Crumbs' — a campus app alerting students to free catered meals via push notifications. Competed against 5 finalist teams at the 2025 Innovation Showcase.",
+      "Won Davidson College's IdeaSprint competition with 'Left No Crumbs' — a campus app alerting students to free catered meals via push notifications. Took first place out of 5 finalist teams at the 2025 Innovation Showcase.",
     link: "https://hurthub.davidson.edu/davidson-entrepreneurship-network-innovation-showcase-2025-celebrating-student-entrepreneurs-and-community-innovators/",
     tags: ["🏆 Winner", "$1,000 Prize", "Entrepreneurship"],
     award: true,

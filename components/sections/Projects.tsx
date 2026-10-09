@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { GithubIcon } from "@/components/GithubIcon";
@@ -10,10 +11,10 @@ import { projects, type Project } from "@/data/portfolio";
 // ─── Browser preview ─────────────────────────────────────────────────────────
 function BrowserPreview({ project }: { project: Project }) {
   const primaryUrl = project.additionalUrls?.[0]?.url ?? project.liveUrl;
-  const displayUrl =
-    project.liveUrl === "#"
-      ? `${project.name.toLowerCase().replace(/\s+/g, "-")}.vercel.app`
-      : project.liveUrl.replace("https://", "");
+  const hasLink = primaryUrl !== "#";
+  const displayUrl = hasLink
+    ? primaryUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")
+    : project.previewLabel ?? project.name;
 
   return (
     <div
@@ -49,17 +50,20 @@ function BrowserPreview({ project }: { project: Project }) {
 
       {/* Preview content */}
       {project.previewImage ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={project.previewImage}
-          alt={`${project.name} preview`}
-          className={`absolute left-0 right-0 bottom-0 w-full ${
-            project.previewImageContain
-              ? "object-contain p-8"
-              : "object-cover"
-          }`}
-          style={{ top: "32px", height: "calc(100% - 32px)" }}
-        />
+        <div
+          className="absolute left-0 right-0 bottom-0"
+          style={{ top: "32px" }}
+        >
+          <Image
+            src={project.previewImage}
+            alt={`${project.name} preview`}
+            fill
+            sizes="(min-width: 1024px) 720px, 100vw"
+            className={
+              project.previewImageContain ? "object-contain p-8" : "object-cover"
+            }
+          />
+        </div>
       ) : (
         <div className="absolute inset-0 pt-8 flex flex-col gap-2 p-5 opacity-35">
           <div className="h-2.5 w-2/3 bg-white/20 rounded" />
@@ -74,17 +78,19 @@ function BrowserPreview({ project }: { project: Project }) {
         </div>
       )}
 
-      {/* Visit overlay */}
-      <a
-        href={primaryUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="absolute inset-0 bg-black/55 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 z-20"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <ExternalLink className="h-5 w-5 text-white" />
-        <span className="text-sm font-semibold text-white">Visit Site</span>
-      </a>
+      {/* Visit overlay — only when there's somewhere real to go */}
+      {hasLink && (
+        <a
+          href={primaryUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute inset-0 bg-black/55 opacity-0 hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-inset transition-opacity duration-300 flex items-center justify-center gap-2 z-20"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <ExternalLink className="h-5 w-5 text-white" />
+          <span className="text-sm font-semibold text-white">Visit Site</span>
+        </a>
+      )}
     </div>
   );
 }
@@ -191,7 +197,8 @@ export function Projects() {
                             </a>
                           ))
                         ) : (
-                          active.liveUrl !== "#" && (
+                          active.liveUrl !== "#" &&
+                          active.liveUrl !== active.githubUrl && (
                             <a
                               href={active.liveUrl}
                               target="_blank"
@@ -210,6 +217,7 @@ export function Projects() {
                             rel="noopener noreferrer"
                             className="p-1.5 rounded-lg text-white/35 hover:text-white/70 hover:bg-white/[0.06] transition-all"
                             title="View source"
+                            aria-label={`View ${active.name} source on GitHub`}
                           >
                             <GithubIcon className="h-4 w-4" />
                           </a>
