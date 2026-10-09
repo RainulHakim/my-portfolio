@@ -29,7 +29,7 @@ export const siteConfig = {
 };
 
 export const heroStats = [
-  { value: 30, suffix: "+", label: "Students & faculty advised" },
+  { value: 85, suffix: "+", label: "Students & faculty advised" },
   { value: 1000, suffix: "+", label: "Community members reached" },
   { value: 40, suffix: "+", label: "Designs created" },
 ];
