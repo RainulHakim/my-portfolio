@@ -145,7 +145,7 @@ export function Projects() {
                       >
                         {p.name}
                       </div>
-                      <div className="text-[10px] text-white/28 truncate mt-0.5">
+                      <div className="text-[11px] text-white/35 truncate mt-0.5">
                         {p.tech.slice(0, 3).join(" · ")}
                       </div>
                     </div>
@@ -172,7 +172,7 @@ export function Projects() {
                   <div className="mt-6">
                     {/* Name + links row */}
                     <div className="flex items-start justify-between gap-4 mb-3">
-                      <h3 className="text-xl font-bold text-white tracking-tight">
+                      <h3 className="text-2xl font-bold text-white tracking-tight">
                         {active.name}
                       </h3>
 
@@ -184,7 +184,7 @@ export function Projects() {
                               href={u.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1.5 text-[11px] font-medium text-violet-400/80 hover:text-violet-300 border border-violet-500/20 hover:border-violet-500/40 bg-violet-500/[0.06] hover:bg-violet-500/10 px-2.5 py-1.5 rounded-lg transition-all"
+                              className="inline-flex items-center gap-1.5 text-xs font-medium text-violet-400/90 hover:text-violet-300 border border-violet-500/20 hover:border-violet-500/40 bg-violet-500/[0.06] hover:bg-violet-500/10 px-3 py-1.5 rounded-lg transition-all"
                             >
                               <ExternalLink className="h-3 w-3" />
                               {u.label}
@@ -196,7 +196,7 @@ export function Projects() {
                               href={active.liveUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1.5 text-[11px] font-medium text-violet-400/80 hover:text-violet-300 border border-violet-500/20 hover:border-violet-500/40 bg-violet-500/[0.06] hover:bg-violet-500/10 px-2.5 py-1.5 rounded-lg transition-all"
+                              className="inline-flex items-center gap-1.5 text-xs font-medium text-violet-400/90 hover:text-violet-300 border border-violet-500/20 hover:border-violet-500/40 bg-violet-500/[0.06] hover:bg-violet-500/10 px-3 py-1.5 rounded-lg transition-all"
                             >
                               <ExternalLink className="h-3 w-3" />
                               Live Demo
@@ -218,7 +218,7 @@ export function Projects() {
                     </div>
 
                     {/* Impact — prominent */}
-                    <p className="text-base text-white/60 leading-relaxed mb-4">
+                    <p className="text-[17px] sm:text-lg text-white/70 leading-relaxed mb-5">
                       {active.impact}
                     </p>
 
@@ -227,7 +227,7 @@ export function Projects() {
                       {active.tech.map((tag) => (
                         <span
                           key={tag}
-                          className="text-[11px] font-medium text-violet-300/70 bg-violet-500/10 border border-violet-500/15 px-2.5 py-1 rounded-md"
+                          className="text-xs font-medium text-violet-300/75 bg-violet-500/10 border border-violet-500/15 px-2.5 py-1 rounded-md"
                         >
                           {tag}
                         </span>
@@ -235,11 +235,11 @@ export function Projects() {
                     </div>
 
                     {/* Bullets — 2-column grid */}
-                    <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
+                    <ul className="grid sm:grid-cols-2 gap-x-7 gap-y-3">
                       {active.bullets.map((bullet) => (
                         <li
                           key={bullet}
-                          className="flex items-start gap-2.5 text-sm text-white/45 leading-relaxed"
+                          className="flex items-start gap-2.5 text-[15px] text-white/55 leading-relaxed"
                         >
                           <span className="mt-[7px] w-1 h-1 rounded-full bg-violet-500/50 shrink-0" />
                           <span>{bullet}</span>
