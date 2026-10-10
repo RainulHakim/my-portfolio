@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ReactNode } from "react";
 
 interface FadeInProps {
@@ -16,6 +16,8 @@ export function FadeIn({
   className,
   direction = "up",
 }: FadeInProps) {
+  const reduceMotion = useReducedMotion();
+
   const initial =
     direction === "up"
       ? { opacity: 0, y: 20 }
@@ -32,10 +34,15 @@ export function FadeIn({
 
   return (
     <motion.div
-      initial={initial}
+      // `initial={false}` starts at the final state, so reduced motion shows
+      // the content immediately instead of leaving it stuck at opacity 0.
+      // The element type stays the same either way, which keeps hydration safe.
+      initial={reduceMotion ? false : initial}
       whileInView={animate}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay, ease: "easeOut" }}
+      transition={
+        reduceMotion ? { duration: 0 } : { duration: 0.5, delay, ease: "easeOut" }
+      }
       className={className}
     >
       {children}

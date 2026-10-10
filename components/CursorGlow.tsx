@@ -8,6 +8,10 @@ export function CursorGlow() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.style.display = "none";
+      return;
+    }
 
     let raf: number;
     let tx = 0, ty = 0;   // target

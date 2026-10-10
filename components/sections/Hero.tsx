@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { ArrowRight, Download, Mail, ChevronDown } from "lucide-react";
 import { siteConfig, heroStats } from "@/data/portfolio";
 import { FloatingParticles } from "@/components/FloatingParticles";
@@ -33,12 +33,18 @@ function Counter({
   suffix: string;
   label: string;
 }) {
+  const reduceMotion = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true });
   const [count, setCount] = useState(0);
 
   useEffect(() => {
     if (!isInView) return;
+    // Counting up is motion too — show the final number straight away.
+    if (reduceMotion) {
+      setCount(target);
+      return;
+    }
     let frame = 0;
     const totalFrames = 60;
     const increment = target / totalFrames;
@@ -48,7 +54,7 @@ function Counter({
       if (frame < totalFrames) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
-  }, [isInView, target]);
+  }, [isInView, target, reduceMotion]);
 
   return (
     <div ref={ref} className="text-center sm:text-left">
@@ -62,6 +68,13 @@ function Counter({
 }
 
 export function Hero() {
+  const reduceMotion = useReducedMotion();
+
+  // Reduced motion must not hide content: fall back to variants that are
+  // already in their final, visible state.
+  const container = stagger;
+  const item = up;
+
   return (
     <section className="relative min-h-svh flex flex-col justify-center pt-20 pb-24 px-6 lg:px-10 overflow-hidden">
       {/* Hero local glow */}
@@ -78,10 +91,10 @@ export function Hero() {
       <FloatingParticles />
 
       <div className="max-w-6xl mx-auto w-full relative">
-        <motion.div variants={stagger} initial="hidden" animate="show">
+        <motion.div variants={container} initial={reduceMotion ? "show" : "hidden"} animate="show">
 
           {/* Badge */}
-          <motion.div variants={up} className="mb-8">
+          <motion.div variants={item} className="mb-8">
             <span className="inline-flex items-center gap-2.5 text-xs font-medium text-violet-300/80 border border-violet-500/20 bg-violet-500/[0.07] backdrop-blur-sm rounded-full px-4 py-2">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75" />
@@ -92,7 +105,7 @@ export function Hero() {
           </motion.div>
 
           {/* Headline */}
-          <motion.div variants={up} className="mb-6">
+          <motion.div variants={item} className="mb-6">
             <h1 className="text-5xl sm:text-6xl lg:text-[5.5rem] font-bold leading-[1.0] tracking-[-0.02em]">
               <span className="text-white/95">{siteConfig.heroHeadline.before}</span>
               <br />
@@ -103,7 +116,7 @@ export function Hero() {
 
           {/* Cycling role */}
           <motion.p
-            variants={up}
+            variants={item}
             className="text-sm font-medium text-white/35 mb-5 flex items-center gap-2"
           >
             <span className="text-white/20">→</span>
@@ -112,14 +125,14 @@ export function Hero() {
 
           {/* Subheadline */}
           <motion.p
-            variants={up}
+            variants={item}
             className="text-base sm:text-lg text-white/45 max-w-xl leading-relaxed mb-10"
           >
             {siteConfig.subHeadline}
           </motion.p>
 
           {/* CTAs */}
-          <motion.div variants={up} className="flex flex-wrap gap-3 mb-14">
+          <motion.div variants={item} className="flex flex-wrap gap-3 mb-14">
             <a
               href="#projects"
               className="group inline-flex items-center gap-2 text-sm font-medium px-6 py-3 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white transition-all shadow-lg shadow-violet-900/40 hover:shadow-violet-800/50 hover:-translate-y-0.5 active:translate-y-0"
@@ -148,7 +161,7 @@ export function Hero() {
 
           {/* Animated stats */}
           <motion.div
-            variants={up}
+            variants={item}
             className="flex flex-wrap gap-8 pt-8 border-t border-white/[0.06]"
           >
             {heroStats.map((stat) => (

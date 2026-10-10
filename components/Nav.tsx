@@ -1,17 +1,25 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { siteConfig } from "@/data/portfolio";
 
-const navLinks = [
+const allNavLinks = [
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Involvement", href: "#involvement" },
+  { label: "Writing", href: "#writing" },
   { label: "Skills", href: "#skills" },
 ];
 
-export function Nav() {
+export function Nav({ showWriting = false }: { showWriting?: boolean }) {
+  const navLinks = useMemo(
+    () =>
+      showWriting
+        ? allNavLinks
+        : allNavLinks.filter((l) => l.href !== "#writing"),
+    [showWriting]
+  );
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
 
@@ -39,7 +47,7 @@ export function Nav() {
     });
 
     return () => observers.forEach((o) => o.disconnect());
-  }, []);
+  }, [navLinks]);
 
   return (
     <header

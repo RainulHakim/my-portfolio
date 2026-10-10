@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/FadeIn";
 import { skillGroups } from "@/data/portfolio";
 
@@ -20,6 +20,12 @@ const tagVariants = {
 };
 
 export function Skills() {
+  const reduceMotion = useReducedMotion();
+  const container = reduceMotion ? {} : containerVariants;
+  const tag = reduceMotion
+    ? { hidden: { opacity: 1, scale: 1, y: 0 }, show: { opacity: 1, scale: 1, y: 0 } }
+    : tagVariants;
+
   return (
     <section id="skills" className="py-28 px-6 lg:px-10">
       <div className="max-w-6xl mx-auto">
@@ -42,7 +48,7 @@ export function Skills() {
                   {group.label}
                 </p>
                 <motion.div
-                  variants={containerVariants}
+                  variants={container}
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true }}
@@ -51,7 +57,7 @@ export function Skills() {
                   {group.skills.map((skill) => (
                     <motion.span
                       key={skill.name}
-                      variants={tagVariants}
+                      variants={tag}
                       className="text-sm font-medium text-white/65 bg-white/[0.05] hover:bg-white/[0.09] border border-white/[0.07] hover:border-white/[0.12] px-3 py-1.5 rounded-lg transition-colors cursor-default"
                     >
                       {skill.name}

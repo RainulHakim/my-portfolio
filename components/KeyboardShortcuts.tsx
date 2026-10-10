@@ -45,6 +45,8 @@ export function KeyboardShortcuts() {
       if (
         e.target instanceof HTMLInputElement ||
         e.target instanceof HTMLTextAreaElement ||
+        e.target instanceof HTMLSelectElement ||
+        (e.target instanceof HTMLElement && e.target.isContentEditable) ||
         e.metaKey ||
         e.ctrlKey ||
         e.altKey

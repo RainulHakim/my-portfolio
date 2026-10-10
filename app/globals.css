@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -170,3 +171,21 @@
   80%       { transform: translate(-35px, 35px) scale(0.96); }
 }
 .orb-4 { animation: orb-drift-4 25s ease-in-out infinite; }
+
+/* ─── Reduced motion ────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Writing: let the prose <pre> own the code block background ─────────── */
+.prose pre code.hljs {
+  background: transparent;
+  padding: 0;
+}

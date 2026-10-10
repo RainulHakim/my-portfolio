@@ -29,7 +29,7 @@ export const siteConfig = {
 };
 
 export const heroStats = [
-  { value: 30, suffix: "+", label: "Students & faculty advised" },
+  { value: 85, suffix: "+", label: "Students & faculty advised" },
   { value: 1000, suffix: "+", label: "Community members reached" },
   { value: 40, suffix: "+", label: "Designs created" },
 ];
@@ -49,6 +49,8 @@ export type Project = {
   previewImage?: string;
   /** Use object-contain (centered) instead of object-cover — better for logos */
   previewImageContain?: boolean;
+  /** Text for the mock address bar when there's no live URL */
+  previewLabel?: string;
   /** Multiple live URLs for projects with more than one site */
   additionalUrls?: { label: string; url: string }[];
 };
@@ -75,7 +77,8 @@ export const projects: Project[] = [
     githubUrl: "#",
     previewGradient:
       "linear-gradient(135deg, #020617 0%, #0c4a6e 40%, #0369a1 75%, #38bdf8 100%)",
-    previewImage: "/frib-group.jpeg",
+    previewImage: "/frib-group.webp",
+    previewLabel: "Research · ALPhA Lab × FRIB",
   },
   {
     name: "Left No Crumbs",
@@ -86,14 +89,14 @@ export const projects: Project[] = [
       "Co-founded and built a real-time platform that turns leftover catered food into push alerts for 600+ students across 55 campus organizations",
       "Designed a PostgreSQL schema with row-level security, campus-only auth, dietary filtering, and rate-limited push notifications",
       "Partnered with Davidson Dining and T&I on Davidson One integration",
-      "Won Davidson College's IdeaSprint and its $1,000 prize at the 2025 Innovation Showcase",
+      "Won Davidson College's IdeaSprint out of 5 finalist teams, taking the $1,000 prize at the 2025 Innovation Showcase",
     ],
     liveUrl:
       "https://hurthub.davidson.edu/davidson-entrepreneurship-network-innovation-showcase-2025-celebrating-student-entrepreneurs-and-community-innovators/",
     githubUrl: "#",
     previewGradient:
       "linear-gradient(135deg, #1a0f00 0%, #451a03 40%, #78350f 75%, #d97706 100%)",
-    previewImage: "/ideasprint.png",
+    previewImage: "/ideasprint.webp",
   },
   {
     name: "Campus Event Discovery Platform",
@@ -113,7 +116,7 @@ export const projects: Project[] = [
   {
     name: "Naruto Shadow Clone Jutsu",
     impact:
-      "Real-time in-browser gesture recognition — perform a hand sign on webcam and watch shadow clones of yourself appear with smoke effects. Full ML pipeline, no backend.",
+      "Real-time in-browser gesture recognition — perform a hand sign on webcam and watch shadow clones of yourself appear with smoke effects. Full ML pipeline running client-side at ~30 fps, no backend.",
     tech: ["JavaScript", "TensorFlow.js", "MediaPipe", "Canvas API", "Machine Learning"],
     bullets: [
       "Built a full ML pipeline that runs entirely in the browser — MediaPipe Holistic extracts 126 hand landmark coordinates per frame, which feed into a TensorFlow.js neural network trained on custom gesture samples",
@@ -141,7 +144,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/RainulHakim/alternate-app",
     previewGradient:
       "linear-gradient(135deg, #041f1e 0%, #065f46 35%, #059669 65%, #34d399 100%)",
-    previewImage: "/AlternAte-preview.png",
+    previewImage: "/alternate-preview.webp",
   },
   {
     name: "Faculty Websites",
@@ -158,7 +161,7 @@ export const projects: Project[] = [
     githubUrl: "#",
     previewGradient:
       "linear-gradient(135deg, #0f172a 0%, #1e3a5f 40%, #1d4ed8 75%, #60a5fa 100%)",
-    previewImage: "/Andrew Rippeon preview.png",
+    previewImage: "/rippeon-preview.webp",
     additionalUrls: [
       { label: "Dr. Rippeon", url: "https://eng.andrewrippeon.com/" },
       { label: "Dr. Campbell", url: "https://english.shireencampbell.com/" },
@@ -184,7 +187,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/RainulHakim/BeWell",
     previewGradient:
       "linear-gradient(135deg, #052e16 0%, #14532d 40%, #16a34a 75%, #86efac 100%)",
-    previewImage: "/BeWell Cover.png",
+    previewImage: "/bewell-cover.webp",
   },
   {
     name: "Travel Time International",
@@ -201,7 +204,8 @@ export const projects: Project[] = [
     githubUrl: "#",
     previewGradient:
       "linear-gradient(135deg, #1c0533 0%, #4a0e8f 40%, #7c3aed 75%, #c4b5fd 100%)",
-    previewImage: "/TravelTimeint.jpeg",
+    previewImage: "/travel-time.webp",
+    previewLabel: "Brand identity · Travel Time International",
     previewImageContain: true,
   },
 ];
@@ -248,7 +252,7 @@ export const experience: Experience[] = [
     company: "Davidson College",
     dates: "Oct 2025 – Present",
     bullets: [
-      "Designed and developed faculty websites to enhance professional online presence, usability, and accessibility",
+      "Designed and developed two faculty personal websites to enhance professional online presence, usability, and accessibility",
       "Collaborated with faculty to gather requirements, incorporate feedback, and deliver user-centered web solutions",
     ],
   },
@@ -302,7 +306,7 @@ export const involvement: Involvement[] = [
     organization: "Davidson Entrepreneurship Network",
     dates: "2025",
     description:
-      "Won Davidson College's IdeaSprint competition with 'Left No Crumbs' — a campus app alerting students to free catered meals via push notifications. Competed against 5 finalist teams at the 2025 Innovation Showcase.",
+      "Won Davidson College's IdeaSprint competition with 'Left No Crumbs' — a campus app alerting students to free catered meals via push notifications. Took first place out of 5 finalist teams at the 2025 Innovation Showcase.",
     link: "https://hurthub.davidson.edu/davidson-entrepreneurship-network-innovation-showcase-2025-celebrating-student-entrepreneurs-and-community-innovators/",
     tags: ["🏆 Winner", "$1,000 Prize", "Entrepreneurship"],
     award: true,
