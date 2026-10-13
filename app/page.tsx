@@ -1,29 +1,52 @@
-import { Background } from "@/components/Background";
-import { CursorGlow } from "@/components/CursorGlow";
 import { Nav } from "@/components/Nav";
-import { KeyboardShortcuts } from "@/components/KeyboardShortcuts";
-import { TechMarquee } from "@/components/TechMarquee";
+import { siteConfig, education } from "@/data/portfolio";
 import { Hero } from "@/components/sections/Hero";
-import { Projects } from "@/components/sections/Projects";
+import { Work } from "@/components/sections/Work";
 import { Experience } from "@/components/sections/Experience";
-import { Involvement } from "@/components/sections/Involvement";
-import { Skills } from "@/components/sections/Skills";
+import { About } from "@/components/sections/About";
+import { Leadership } from "@/components/sections/Leadership";
 import { Contact } from "@/components/sections/Contact";
+
+/** Structured data, so search and recruiter tools can read the basics. */
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: siteConfig.name,
+  url: "https://rainulhakim.vercel.app",
+  email: `mailto:${siteConfig.email}`,
+  image: "https://rainulhakim.vercel.app" + siteConfig.headshot,
+  jobTitle: "Computer Science Student",
+  description: siteConfig.about,
+  address: { "@type": "PostalPlace", name: siteConfig.location },
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: education.school,
+    address: education.location,
+  },
+  sameAs: [siteConfig.github, siteConfig.linkedin],
+  knowsAbout: [
+    "Machine learning",
+    "Self-supervised learning",
+    "PyTorch",
+    "Data engineering",
+    "Software engineering",
+  ],
+};
 
 export default function Home() {
   return (
     <>
-      <Background />
-      <CursorGlow />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
       <Nav />
-      <KeyboardShortcuts />
-      <main className="relative z-10">
+      <main>
         <Hero />
-        <TechMarquee />
-        <Projects />
+        <Work />
         <Experience />
-        <Involvement />
-        <Skills />
+        <About />
+        <Leadership />
         <Contact />
       </main>
     </>
