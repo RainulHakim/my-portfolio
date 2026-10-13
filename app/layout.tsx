@@ -1,53 +1,52 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Inter_Tight } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const interTight = Inter_Tight({
+  variable: "--font-inter-tight",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Rainul Hakim — ML Researcher & CS Student",
+  metadataBase: new URL("https://rainulhakim.vercel.app"),
+  title: "Rainul Hakim · Computer Science at Davidson College",
   description:
-    "CS student at Davidson College — machine learning researcher at FRIB, data consultant, designer, and community builder. Open to Summer 2027 internships.",
+    "Computer Science at Davidson College, class of 2029. Machine learning research at the Facility for Rare Isotope Beams, data analytics consulting, and products used by hundreds of students.",
   openGraph: {
-    title: "Rainul Hakim — ML Researcher & CS Student",
+    title: "Rainul Hakim · Computer Science at Davidson College",
     description:
-      "CS student at Davidson College — machine learning researcher at FRIB, data consultant, and designer.",
+      "Computer Science at Davidson College, class of 2029. Machine learning research at FRIB, and products used by hundreds of students.",
     type: "website",
+    url: "/",
+    siteName: "Rainul Hakim",
   },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background text-foreground antialiased`}
-      >
-        {/* Grain overlay */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none fixed inset-0 z-[9998]"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")`,
-            backgroundRepeat: "repeat",
-            backgroundSize: "200px 200px",
-            opacity: 0.025,
-            mixBlendMode: "overlay",
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}",
           }}
         />
+      </head>
+      <body
+        className={`${inter.variable} ${interTight.variable} min-h-screen bg-background text-foreground antialiased`}
+      >
         {children}
       </body>
     </html>

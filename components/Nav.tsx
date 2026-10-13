@@ -1,103 +1,97 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { CommandPalette } from "@/components/CommandPalette";
 import { siteConfig } from "@/data/portfolio";
 
-const navLinks = [
-  { label: "Projects", href: "#projects" },
+const links = [
+  { label: "Work", href: "#work" },
   { label: "Experience", href: "#experience" },
-  { label: "Involvement", href: "#involvement" },
-  { label: "Skills", href: "#skills" },
+  { label: "About", href: "#about" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>("");
+  const [active, setActive] = useState("");
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 24);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
-    const sectionIds = navLinks.map((l) => l.href.slice(1));
-    const observers: IntersectionObserver[] = [];
-
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const observer = new IntersectionObserver(
+    const observers = links.map((l) => {
+      const el = document.getElementById(l.href.slice(1));
+      if (!el) return null;
+      const io = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) setActiveSection(`#${id}`);
+          if (entry.isIntersecting) setActive(l.href);
         },
-        { rootMargin: "-35% 0px -55% 0px" }
+        { rootMargin: "-40% 0px -55% 0px" }
       );
-      observer.observe(el);
-      observers.push(observer);
+      io.observe(el);
+      return io;
     });
-
-    return () => observers.forEach((o) => o.disconnect());
+    return () => observers.forEach((o) => o?.disconnect());
   }, []);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`sticky top-0 z-50 transition-colors ${
         scrolled
-          ? "bg-black/50 backdrop-blur-xl border-b border-white/[0.06]"
-          : "bg-transparent"
+          ? "border-b border-line bg-[var(--bg)]"
+          : "border-b border-transparent"
       }`}
     >
-      <nav className="max-w-6xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
-        <a
-          href="#"
-          className="text-sm font-semibold text-white/80 hover:text-white transition-colors tracking-tight"
-        >
+      <a
+        href="#work"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-md focus:bg-[var(--ink)] focus:px-3 focus:py-2 focus:text-sm focus:text-[var(--bg)]"
+      >
+        Skip to work
+      </a>
+
+      <nav className="flex h-16 items-center justify-between gap-4 px-[var(--gutter)]">
+        <a href="#top" className="text-[0.9375rem] font-semibold tracking-tight text-ink">
           {siteConfig.name}
         </a>
 
-        <div className="flex items-center gap-1">
-          <div className="hidden sm:flex items-center mr-2">
-            {navLinks.map((link) => (
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="hidden items-center md:flex">
+            {links.map((l) => (
               <a
-                key={link.href}
-                href={link.href}
-                className="relative text-sm px-3 py-2"
+                key={l.href}
+                href={l.href}
+                className={`rounded-md px-3 py-2 text-sm transition-colors ${
+                  active === l.href
+                    ? "text-ink"
+                    : "text-muted-ink hover:text-ink"
+                }`}
               >
-                {activeSection === link.href && (
-                  <motion.span
-                    layoutId="nav-active"
-                    className="absolute inset-0 rounded-md bg-white/[0.08]"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
+                {l.label}
                 <span
-                  className={`relative z-10 transition-colors duration-200 ${
-                    activeSection === link.href
-                      ? "text-white/90"
-                      : "text-white/50 hover:text-white/80"
+                  aria-hidden="true"
+                  className={`mx-auto mt-1 block h-px bg-brand transition-all ${
+                    active === l.href ? "w-full opacity-100" : "w-0 opacity-0"
                   }`}
-                >
-                  {link.label}
-                </span>
+                />
               </a>
             ))}
           </div>
 
-          <a
-            href={siteConfig.resumeUrl}
-            download
-            className="text-xs font-medium text-white/60 hover:text-white border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg transition-all"
-          >
-            Resume
-          </a>
+          <CommandPalette />
+          <ThemeToggle />
 
           <a
-            href="#contact"
-            className="text-xs font-medium ml-1.5 px-4 py-2 rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white transition-all shadow-lg shadow-violet-900/30"
+            href={siteConfig.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-lg border border-line px-3.5 py-2 text-sm font-medium text-ink transition-colors hover:border-ink"
           >
-            Contact
+            Résumé
           </a>
         </div>
       </nav>

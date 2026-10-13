@@ -1,158 +1,111 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Copy, Check } from "lucide-react";
+import { Check, Copy } from "@/components/Icons";
 import { GithubIcon } from "@/components/GithubIcon";
 import { LinkedinIcon } from "@/components/LinkedinIcon";
-import { FadeIn } from "@/components/FadeIn";
+import Image from "next/image";
 import { siteConfig } from "@/data/portfolio";
 
 export function Contact() {
   const [copied, setCopied] = useState(false);
 
   const copyEmail = async () => {
-    await navigator.clipboard.writeText(siteConfig.email).catch(() => {});
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2200);
+    try {
+      await navigator.clipboard.writeText(siteConfig.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      /* clipboard blocked; the mailto link still works */
+    }
   };
 
   return (
-    <section id="contact" className="py-28 px-6 lg:px-10">
-      <div className="max-w-6xl mx-auto">
-        <FadeIn>
-          <div className="mb-16">
-            <p className="text-xs font-semibold uppercase tracking-widest text-violet-400 mb-3">
-              Contact
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-              Let&apos;s work together.
-            </h2>
-          </div>
-        </FadeIn>
+    <section id="contact" className="scroll-mt-24 px-[var(--gutter)] py-20 sm:py-24">
+      <div>
+        <div className="grid items-stretch gap-0 border border-line sm:grid-cols-[1fr_auto]">
+          <div className="p-8 sm:p-12">
+            <p className="eyebrow">Contact</p>
+          <h2 className="mt-2 text-[clamp(2.2rem,5vw,3.4rem)] font-semibold leading-[1.02] tracking-[-0.04em] text-ink">
+            Let&apos;s talk.
+          </h2>
+          <p className="mt-4 max-w-xl text-[1.0625rem] leading-[1.65] text-muted-ink">
+            {siteConfig.contactBlurb}
+          </p>
 
-        {/* Main contact card */}
-        <FadeIn delay={0.1}>
-          <div className="relative overflow-hidden border border-white/[0.07] rounded-2xl bg-white/[0.025] p-8 sm:p-12">
-            {/* Background gradient blobs */}
-            <div
-              className="absolute -top-24 -right-24 w-64 h-64 rounded-full pointer-events-none"
-              style={{
-                background:
-                  "radial-gradient(circle, rgba(124,58,237,0.18) 0%, transparent 70%)",
-                filter: "blur(40px)",
-              }}
-            />
-            <div
-              className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full pointer-events-none"
-              style={{
-                background:
-                  "radial-gradient(circle, rgba(6,182,212,0.10) 0%, transparent 70%)",
-                filter: "blur(30px)",
-              }}
-            />
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className="inline-flex items-center gap-2 btn btn-solid text-[0.95rem]"
+            >
+              {siteConfig.email}
+            </a>
+            <button
+              type="button"
+              onClick={copyEmail}
+              className="inline-flex items-center gap-2 btn btn-ghost text-[0.95rem]"
+            >
+              {copied ? (
+                <>
+                  <Check className="h-4 w-4 text-[var(--brand)]" />
+                  Copied
+                </>
+              ) : (
+                <>
+                  <Copy className="h-4 w-4" />
+                  Copy
+                </>
+              )}
+            </button>
+            <span aria-live="polite" className="sr-only">
+              {copied ? "Email address copied to clipboard" : ""}
+            </span>
 
-            <div className="relative">
-              {/* Availability badge */}
-              <div className="inline-flex items-center gap-2 text-xs font-medium text-emerald-400/90 border border-emerald-500/20 bg-emerald-500/[0.07] rounded-full px-3 py-1.5 mb-6">
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
-                </span>
-                {siteConfig.availabilityText} · Responds within 24h
-              </div>
-
-              <p className="text-white/45 text-base max-w-lg leading-relaxed mb-8">
-                {siteConfig.contactBlurb}
-              </p>
-
-              <div className="flex flex-wrap gap-3">
-                {/* Email with copy-to-clipboard */}
-                <div className="flex items-stretch gap-0.5">
-                  <a
-                    href={`mailto:${siteConfig.email}`}
-                    className="inline-flex items-center gap-2 text-sm font-medium px-5 py-3 rounded-l-xl bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white transition-all shadow-lg shadow-violet-900/40 hover:-translate-y-0.5"
-                  >
-                    <Mail className="h-4 w-4" />
-                    {siteConfig.email}
-                  </a>
-                  <button
-                    onClick={copyEmail}
-                    title="Copy email address"
-                    className="px-3 rounded-r-xl bg-indigo-600 hover:bg-indigo-500 text-white transition-all shadow-lg shadow-violet-900/40 hover:-translate-y-0.5 border-l border-white/10"
-                  >
-                    <AnimatePresence mode="wait" initial={false}>
-                      {copied ? (
-                        <motion.span
-                          key="check"
-                          initial={{ scale: 0.5, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          exit={{ scale: 0.5, opacity: 0 }}
-                          transition={{ duration: 0.15 }}
-                        >
-                          <Check className="h-3.5 w-3.5 text-emerald-300" />
-                        </motion.span>
-                      ) : (
-                        <motion.span
-                          key="copy"
-                          initial={{ scale: 0.5, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          exit={{ scale: 0.5, opacity: 0 }}
-                          transition={{ duration: 0.15 }}
-                        >
-                          <Copy className="h-3.5 w-3.5" />
-                        </motion.span>
-                      )}
-                    </AnimatePresence>
-                  </button>
-                </div>
-
-                <a
-                  href={siteConfig.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-medium px-5 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-all hover:-translate-y-0.5"
-                >
-                  <LinkedinIcon className="h-4 w-4" />
-                  LinkedIn
-                </a>
-
-                <a
-                  href={siteConfig.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-medium px-5 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-all hover:-translate-y-0.5"
-                >
-                  <GithubIcon className="h-4 w-4" />
-                  GitHub
-                </a>
-              </div>
+            <a
+              href={siteConfig.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 btn btn-ghost text-[0.95rem]"
+            >
+              <LinkedinIcon className="h-4 w-4" />
+              LinkedIn
+            </a>
+            <a
+              href={siteConfig.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 btn btn-ghost text-[0.95rem]"
+            >
+              <GithubIcon className="h-4 w-4" />
+              GitHub
+            </a>
             </div>
           </div>
-        </FadeIn>
 
-        {/* Copied toast */}
-        <AnimatePresence>
-          {copied && (
-            <motion.div
-              initial={{ opacity: 0, y: 16, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 8, scale: 0.95 }}
-              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-black/80 backdrop-blur-xl border border-white/[0.08] shadow-xl text-sm text-white/80"
-            >
-              <Check className="h-3.5 w-3.5 text-emerald-400" />
-              Email copied to clipboard
-            </motion.div>
-          )}
-        </AnimatePresence>
+          <div className="relative min-h-[18rem] w-full overflow-hidden border-t border-line sm:min-h-full sm:w-[20rem] sm:border-l sm:border-t-0">
+            <Image
+              src={siteConfig.portrait}
+              alt={`${siteConfig.name}, portrait`}
+              fill
+              sizes="(min-width: 640px) 20rem, 100vw"
+              className="object-cover object-[center_28%]"
+            />
+          </div>
+        </div>
 
-        {/* Footer */}
-        <FadeIn delay={0.15}>
-          <p className="text-xs text-white/20 text-center mt-16 pt-6 border-t border-white/[0.05]">
-            Built with Next.js & Tailwind CSS · Deployed on Vercel
+        <footer className="mt-10 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-6">
+          <p className="text-xs text-muted-ink">
+            © {new Date().getFullYear()} {siteConfig.name}
           </p>
-        </FadeIn>
+          <a
+            href={siteConfig.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-underline text-xs text-muted-ink hover:text-ink"
+          >
+            Résumé (PDF)
+          </a>
+        </footer>
       </div>
     </section>
   );

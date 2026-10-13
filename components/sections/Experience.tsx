@@ -1,62 +1,43 @@
-import { FadeIn } from "@/components/FadeIn";
+import { SectionHeading } from "@/components/SectionHeading";
 import { experience } from "@/data/portfolio";
 
 export function Experience() {
   return (
-    <section id="experience" className="py-28 px-6 lg:px-10">
-      <div className="max-w-6xl mx-auto">
-        <FadeIn>
-          <div className="mb-16">
-            <p className="text-xs font-semibold uppercase tracking-widest text-violet-400 mb-3">
-              Background
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-              Experience
-            </h2>
-          </div>
-        </FadeIn>
+    <section id="experience" className="scroll-mt-24 px-[var(--gutter)] py-20 sm:py-24">
+      <div>
+        <SectionHeading kicker="Experience" title="Where I've worked." />
 
-        {/* Timeline */}
-        <div className="relative pl-6 border-l border-white/[0.06]">
-          <div className="space-y-12">
-            {experience.map((entry, i) => (
-              <FadeIn key={`${entry.company}-${i}`} delay={i * 0.1}>
-                <div className="relative">
-                  {/* Timeline dot */}
-                  <div className="absolute -left-[1.5625rem] top-1 w-2.5 h-2.5 rounded-full bg-violet-500 ring-4 ring-background shadow-lg shadow-violet-500/30" />
-
-                  <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-2 sm:gap-8">
-                    <div>
-                      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
-                        <h3 className="text-base font-semibold text-white tracking-tight">
-                          {entry.role}
-                        </h3>
-                      </div>
-                      <p className="text-sm font-medium text-violet-400 mb-4">
-                        {entry.company}
-                      </p>
-                      <ul className="space-y-2">
-                        {entry.bullets.map((bullet) => (
-                          <li
-                            key={bullet}
-                            className="flex items-start gap-3 text-sm text-white/40"
-                          >
-                            <span className="mt-[7px] w-1 h-1 rounded-full bg-white/20 shrink-0" />
-                            <span className="leading-relaxed">{bullet}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="sm:text-right">
-                      <span className="text-xs text-white/30 font-medium whitespace-nowrap tabular-nums">
-                        {entry.dates}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
+        <div className="mt-8">
+          {experience.map((e) => (
+            <div
+              key={`${e.company}-${e.role}`}
+              className="grid gap-3 border-b border-line py-7 last:border-b-0 lg:grid-cols-12 lg:gap-8"
+            >
+              <div className="lg:col-span-4">
+                <p className="text-sm font-medium text-ink [font-variant-numeric:tabular-nums]">{e.dates}</p>
+                {e.location ? (
+                  <p className="mt-1 text-xs text-muted-ink">{e.location}</p>
+                ) : null}
+              </div>
+              <div className="lg:col-span-8">
+                <h3 className="text-base font-semibold tracking-[-0.01em] text-ink">
+                  {e.role}
+                </h3>
+                <p className="mt-0.5 text-sm text-[var(--brand)]">{e.company}</p>
+                <ul className="mt-3.5 space-y-2.5">
+                  {e.bullets.map((b) => (
+                    <li
+                      key={b}
+                      className="grid grid-cols-[0.6rem_1fr] gap-x-2.5 text-[0.9375rem] leading-[1.6] text-muted-ink"
+                    >
+                      <span aria-hidden="true" className="mt-[0.5em] h-[3px] w-[3px] bg-[var(--brand)]" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
