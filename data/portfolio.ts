@@ -33,7 +33,6 @@ export const education = {
   graduation: "Expected May 2029",
   coursework: [
     "Data Structures",
-    "Programming and Problem Solving",
     "Database Programming",
     "Linear Algebra",
     "Calculus I & Modeling",
@@ -202,16 +201,17 @@ export const experience: Experience[] = [
     ],
   },
   {
-    role: "Student Consultant",
-    company: "Data CATS, Davidson College",
+    role: "Data Consultant",
+    company: "DataCATS (Consulting, Analytics, Tutoring Services), Davidson College",
     dates: "Aug 2026 – Present",
     location: "Davidson, NC",
     bullets: [
-      "Resolved data-analytics problems for 85+ students and faculty, from framing questions to visualizing and interpreting results",
+      "Led 85+ consulting sessions and projects for students and faculty on data analysis, statistical modeling and experimental design",
+      "Debug code and data pipelines, and guide regression analysis, hypothesis testing and visualization",
     ],
   },
   {
-    role: "NEXT Level Student Consultant",
+    role: "Student Consultant",
     company: "The Jay Hurt Hub for Innovation and Entrepreneurship",
     dates: "Feb 2026 – May 2026",
     location: "Davidson, NC",
