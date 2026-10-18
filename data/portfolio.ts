@@ -61,8 +61,8 @@ export type Project = {
   liveLabel?: string;
   /** Card colour class; see .tone-* in globals.css. */
   tone: string;
-  /** object-position for the card shot; screenshots want the top, photos the middle. */
-  focus?: string;
+  /** Natural pixel size, so the card frame matches the image exactly. */
+  imageSize?: { w: number; h: number };
 };
 
 export const projects: Project[] = [
@@ -81,7 +81,7 @@ export const projects: Project[] = [
       "Trained on an HPC cluster and contributed reproducible, documented code to a cross-institutional research codebase",
     ],
     image: "/frib-group.webp",
-    focus: "center 42%",
+    imageSize: { w: 1600, h: 1200 },
   },
   {
     name: "Left No Crumbs",
@@ -98,7 +98,7 @@ export const projects: Project[] = [
       "Partnered with Davidson Dining and T&I on Davidson One integration",
     ],
     image: "/ideasprint.webp",
-    focus: "center 40%",
+    imageSize: { w: 518, h: 374 },
     liveUrl:
       "https://hurthub.davidson.edu/davidson-entrepreneurship-network-innovation-showcase-2025-celebrating-student-entrepreneurs-and-community-innovators/",
     liveLabel: "Read the write-up",
@@ -133,7 +133,7 @@ export const projects: Project[] = [
       "Trained a binary classifier (Dropout 0.3, 50 epochs, 0.97 confidence threshold) through a custom in-browser training UI",
     ],
     image: "/naruto-shadow-clone.jpeg",
-    focus: "center 45%",
+    imageSize: { w: 1024, h: 583 },
     liveUrl: "https://github.com/RainulHakim/narutoshadowclone",
     githubUrl: "https://github.com/RainulHakim/narutoshadowclone",
     liveLabel: "Repository",
@@ -153,6 +153,7 @@ export const projects: Project[] = [
       "Added meal comparison and a weekly scoring system with client-side persistence",
     ],
     image: "/alternate-preview.webp",
+    imageSize: { w: 1600, h: 822 },
     liveUrl: "https://alternate-app-pi.vercel.app",
     githubUrl: "https://github.com/RainulHakim/alternate-app",
   },
@@ -171,6 +172,7 @@ export const projects: Project[] = [
       "Implemented responsive layouts and accessibility standards for students, colleagues, and academic peers",
     ],
     image: "/rippeon-preview.webp",
+    imageSize: { w: 1600, h: 778 },
     links: [
       { label: "Dr. Rippeon", url: "https://eng.andrewrippeon.com/" },
       { label: "Dr. Campbell", url: "https://english.shireencampbell.com/" },
@@ -193,15 +195,15 @@ export const experience: Experience[] = [
     role: "Machine Learning Research Assistant",
     company: "Facility for Rare Isotope Beams (FRIB)",
     dates: "May 2026 – Aug 2026",
-    location: "East Lansing, MI & Davidson, NC",
+    location: "East Lansing, MI",
     bullets: [
       "Reached 88.82% accuracy and 88.60% weighted F1 on 3-class track classification by pretraining a DGCNN encoder with SimCLR-style contrastive learning on 60,795 unlabeled AT-TPC events, then fine-tuning via linear probing",
-      "Outperformed generic augmentation baselines by designing a physically-motivated rotation scheme, validated through systematic ablation studies",
-      "Trained models with PyTorch and PyTorch Geometric on an HPC cluster; documented code for a cross-institutional, version-controlled research codebase",
+      "Beat augmentation baselines with a physically motivated rotation scheme, validated by ablation studies",
+      "Trained with PyTorch and PyTorch Geometric on HPC; documented code for a cross-institutional codebase",
     ],
   },
   {
-    role: "Data Consultant",
+    role: "Tech Consultant",
     company: "DataCATS (Consulting, Analytics, Tutoring Services), Davidson College",
     dates: "Aug 2026 – Present",
     location: "Davidson, NC",
@@ -305,14 +307,38 @@ export const leadership: Leadership[] = [
 export type SkillGroup = { label: string; skills: string[] };
 
 export const skillGroups: SkillGroup[] = [
-  { label: "Languages", skills: ["Python", "Java", "JavaScript", "TypeScript", "SQL", "R", "C"] },
   {
-    label: "ML / Scientific computing",
-    skills: ["PyTorch", "PyTorch Geometric", "TensorFlow.js", "MediaPipe", "OpenCV", "NumPy", "Pandas", "SciPy", "Matplotlib", "scikit-learn"],
+    label: "Languages",
+    skills: ["Python", "Java", "SQL", "R", "JavaScript/TypeScript", "C", "HTML/CSS"],
   },
   {
-    label: "Web",
-    skills: ["React", "Next.js", "Node.js", "Supabase", "PostgreSQL", "Vercel Serverless", "HTML", "CSS"],
+    label: "ML / Data Science",
+    skills: [
+      "PyTorch",
+      "PyTorch Geometric",
+      "TensorFlow.js",
+      "scikit-learn",
+      "OpenCV",
+      "MediaPipe",
+      "NumPy",
+      "Pandas",
+      "Matplotlib",
+    ],
   },
-  { label: "Tools", skills: ["Git", "GitHub", "AWS", "Linux", "Mapbox", "Quarto", "HPC clusters", "VS Code"] },
+  {
+    label: "Web & Backend",
+    skills: [
+      "React",
+      "Next.js",
+      "Node.js",
+      "REST APIs",
+      "Vercel Serverless Functions",
+      "Supabase",
+      "PostgreSQL",
+    ],
+  },
+  {
+    label: "Tools",
+    skills: ["Git", "GitHub", "AWS", "Linux", "HPC Clusters", "Mapbox", "Quarto", "VS Code"],
+  },
 ];
