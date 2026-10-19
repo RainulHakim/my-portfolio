@@ -14,16 +14,16 @@ export function Experience() {
               className="grid gap-3 border-b border-line py-7 last:border-b-0 lg:grid-cols-12 lg:gap-8"
             >
               <div className="lg:col-span-4">
-                <p className="text-sm font-medium text-ink [font-variant-numeric:tabular-nums]">{e.dates}</p>
+                <p className="text-[1.15rem] font-medium text-ink [font-variant-numeric:tabular-nums]">{e.dates}</p>
                 {e.location ? (
-                  <p className="mt-1 text-xs text-muted-ink">{e.location}</p>
+                  <p className="mt-1.5 text-[0.95rem] text-muted-ink">{e.location}</p>
                 ) : null}
               </div>
               <div className="lg:col-span-8">
-                <h3 className="text-base font-semibold tracking-[-0.01em] text-ink">
+                <h3 className="text-[1.45rem] font-semibold tracking-[-0.02em] text-ink">
                   {e.role}
                 </h3>
-                <p className="mt-0.5 text-sm text-[var(--brand)]">{e.company}</p>
+                <p className="mt-1 text-[1.1rem] text-[var(--brand)]">{e.company}</p>
                 <ul className="mt-3.5 space-y-2.5">
                   {e.bullets.map((b) => (
                     <li

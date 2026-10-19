@@ -47,18 +47,20 @@ function Card({ project }: { project: Project }) {
   return (
     <article className={`pcard ${project.tone} h-full min-h-[31rem]`}>
       <div className="relative z-[2] px-7 pt-8 sm:px-9 sm:pt-9">
-        <p className="pcard-eyebrow eyebrow">
-          {project.kind} · {project.year}
-        </p>
-        <h3 className="mt-2.5 text-[clamp(1.55rem,2.4vw,2.05rem)] font-semibold leading-[1.08] tracking-[-0.03em]">
+        <h3 className="text-[clamp(1.7rem,2.6vw,2.2rem)] font-semibold leading-[1.06] tracking-[-0.03em]">
           {href ? (
             <a href={href} target="_blank" rel="noopener noreferrer" className="pcard-hit">
-              {project.name}
+              {project.kind} · {project.year}
             </a>
           ) : (
-            project.name
+            <>
+              {project.kind} · {project.year}
+            </>
           )}
         </h3>
+        <p className="mt-1.5 text-[1.05rem] font-medium leading-snug opacity-80">
+          {project.name}
+        </p>
         <p className="mt-2.5 text-[0.95rem] font-semibold [font-variant-numeric:tabular-nums]">
           {project.headline}
         </p>
@@ -74,19 +76,16 @@ function Card({ project }: { project: Project }) {
       </div>
 
       {project.image ? (
-        <div className="pcard-media mt-8 min-h-[12rem]">
-          <div className="pcard-shot">
-            <div className="relative aspect-[16/9] w-full">
-              <Image
-                src={project.image}
-                alt={`${project.name} preview`}
-                fill
-                sizes="(min-width: 1024px) 560px, 85vw"
-                className="object-cover"
-                style={{ objectPosition: project.focus ?? "center top" }}
-              />
-            </div>
-          </div>
+        <div className="mt-auto px-7 pb-7 pt-8 sm:px-9 sm:pb-9">
+          {/* Rendered at the image's own ratio: nothing cropped, no letterboxing. */}
+          <Image
+            src={project.image}
+            alt={`${project.name} preview`}
+            width={project.imageSize?.w ?? 1600}
+            height={project.imageSize?.h ?? 900}
+            sizes="(min-width: 1024px) 560px, 85vw"
+            className="h-auto w-full rounded-[3px]"
+          />
         </div>
       ) : (
         <div className="pb-9" />
@@ -131,11 +130,11 @@ export function Work() {
     <section id="work" className="scroll-mt-24 py-20 sm:py-28">
       <div className="flex flex-wrap items-end justify-between gap-5 px-[var(--gutter)]">
         <div>
-          <p className="eyebrow">Selected work</p>
+          <p className="eyebrow text-[0.95rem] tracking-[0.1em]">Selected work</p>
           <h2 className="mt-2.5 text-[clamp(2rem,4.5vw,3.1rem)] font-semibold leading-[1.02] tracking-[-0.04em] text-ink">
             The latest.
           </h2>
-          <p className="mt-2 text-[1.05rem] text-muted-ink">
+          <p className="mt-3 text-[1.15rem] leading-relaxed text-muted-ink">
             Research, products, and a few things built for fun.{" "}
             <span className="text-ink">{projects.length} projects</span>, scroll
             or use the arrows.

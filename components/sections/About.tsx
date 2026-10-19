@@ -30,19 +30,19 @@ export function About() {
             </p>
 
             <div className="mt-8 border border-line bg-[var(--bg-2)] p-6">
-              <p className="eyebrow">Education</p>
+              <p className="eyebrow text-[0.95rem] tracking-[0.1em]">Education</p>
               <div className="mt-2.5 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                <h3 className="text-base font-semibold text-ink">
+                <h3 className="text-[1.3rem] font-semibold text-ink">
                   {education.school}
                 </h3>
                 <p className="text-sm text-muted-ink [font-variant-numeric:tabular-nums]">
                   {education.graduation}
                 </p>
               </div>
-              <p className="mt-0.5 text-sm text-muted-ink">
+              <p className="mt-1 text-[1.05rem] text-muted-ink">
                 {education.degree} · {education.location}
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-muted-ink">
+              <p className="mt-4 text-[1rem] leading-relaxed text-muted-ink">
                 <span className="text-muted-ink">Relevant coursework: </span>
                 {education.coursework.join(", ")}
               </p>
@@ -52,28 +52,28 @@ export function About() {
         </div>
 
         {/* Skills */}
-        <div className="mt-12 border-t border-line pt-8">
-          <p className="eyebrow">Skills</p>
-          <dl className="mt-3 space-y-4">
-        {skillGroups.map((g) => (
-          <div key={g.label} className="sm:grid sm:grid-cols-12 sm:gap-4">
-            <dt className="text-sm font-medium text-ink sm:col-span-3 sm:pt-0.5">
-              {g.label}
-            </dt>
-            <dd className="mt-1.5 sm:col-span-9 sm:mt-0">
-              <ul className="flex flex-wrap gap-1.5">
-                {g.skills.map((s) => (
-                  <li
-                    key={s}
-                    className="chip text-ink"
-                  >
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            </dd>
-          </div>
-        ))}
+        <div className="mt-14 border-t border-line pt-10">
+          <p className="eyebrow text-[0.95rem] tracking-[0.1em]">Skills</p>
+          <dl className="mt-6 space-y-7">
+            {skillGroups.map((g) => (
+              <div key={g.label} className="sm:grid sm:grid-cols-12 sm:gap-6">
+                <dt className="text-[1.15rem] font-semibold text-ink sm:col-span-3 sm:pt-1">
+                  {g.label}
+                </dt>
+                <dd className="mt-3 sm:col-span-9 sm:mt-0">
+                  <ul className="flex flex-wrap gap-2">
+                    {g.skills.map((s) => (
+                      <li
+                        key={s}
+                        className="rounded-[3px] border border-line px-3 py-1.5 text-[1rem] text-ink"
+                      >
+                        {s}
+                      </li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+            ))}
           </dl>
         </div>
       </div>
