@@ -46,7 +46,7 @@ function Card({ project }: { project: Project }) {
 
   return (
     <article className={`pcard ${project.tone} h-full min-h-[31rem]`}>
-      <div className="relative z-[2] px-7 pt-8 sm:px-9 sm:pt-9">
+      <div className="px-7 pt-8 sm:px-9 sm:pt-9">
         <h3 className="text-[clamp(1.7rem,2.6vw,2.2rem)] font-semibold leading-[1.06] tracking-[-0.03em]">
           {href ? (
             <a href={href} target="_blank" rel="noopener noreferrer" className="pcard-hit">

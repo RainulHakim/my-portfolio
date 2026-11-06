@@ -108,6 +108,25 @@ export const projects: Project[] = [
     imageSize: { w: 1600, h: 1200 },
   },
   {
+    name: "CatFound",
+    tone: "tone-teal",
+    kind: "Campus Lost & Found",
+    year: "2026",
+    headline: "Post a found item in 15 seconds, no account",
+    summary:
+      "Davidson's lost and found, online. Snap a photo, tag the building it turned up in, and whoever lost it can see where to collect it.",
+    tech: ["Next.js", "React", "TypeScript", "PostgreSQL", "Vercel"],
+    bullets: [
+      "Found something? Post it in 15 seconds with a photo and a location, with no account needed",
+      "Lost something? Browse what has been handed in, filtered by the campus building it was found in",
+      "Items route to the pickup desk for the area they were found in, so collection is unambiguous",
+    ],
+    image: "/catfound-thumbnail.png",
+    imageSize: { w: 1920, h: 1080 },
+    liveUrl: "https://catsfound.vercel.app/",
+    liveLabel: "Open CatFound",
+  },
+  {
     name: "Left No Crumbs",
     tone: "tone-lime",
     kind: "Product · 1st place, IdeaSprint",
