@@ -68,8 +68,6 @@ export type Project = {
   tone: string;
   /** Natural pixel size, so the card frame matches the image exactly. */
   imageSize?: { w: number; h: number };
-  /** A logo rather than a screenshot: contained on a light panel. */
-  imageIsLogo?: boolean;
 };
 
 export const projects: Project[] = [
@@ -132,20 +130,22 @@ export const projects: Project[] = [
   {
     name: "CatCruxis",
     tone: "tone-slate",
-    kind: "Data engineering",
+    kind: "Campus Event Platform",
     year: "2026",
-    headline: "One campus calendar from many sources",
+    headline: "Data engineering · 3NF PostgreSQL schema, automated AWS ETL",
     summary:
-      "A campus event platform that unifies listings from WildcatSync, Handshake and other sources into a single searchable map.",
-    tech: ["Python", "PostgreSQL", "AWS Lambda", "Amazon RDS", "EventBridge", "Mapbox"],
+      "Every Davidson event in one place. Listings from WildcatSync, Handshake, the Hurt Hub, department email and student submissions are unified into a single database and surfaced on a searchable map.",
+    tech: ["Python", "PostgreSQL", "AWS Lambda", "Amazon RDS", "EventBridge", "Mapbox", "React"],
     bullets: [
       "Designed a normalized (3NF) PostgreSQL schema unifying events from WildcatSync, Handshake and other campus sources",
       "Automated an ETL pipeline with EventBridge-scheduled AWS Lambda jobs to extract, clean and load event data into RDS",
       "Built a React/Mapbox map interface to filter events by location, date and category",
     ],
-    image: "/catcruxis-logo.png",
-    imageSize: { w: 364, h: 364 },
-    imageIsLogo: true,
+    image: "/catcruxis-thumbnail.png",
+    imageSize: { w: 1920, h: 1080 },
+    liveUrl: "https://github.com/Jogarenas/CatCruxis",
+    githubUrl: "https://github.com/Jogarenas/CatCruxis",
+    liveLabel: "Repository",
   },
   {
     name: "Naruto Shadow Clone Jutsu",
@@ -253,7 +253,7 @@ export const experience: Experience[] = [
     ],
   },
   {
-    role: "Student Consultant",
+    role: "Software Engineering Intern",
     company: "The Jay Hurt Hub for Innovation and Entrepreneurship",
     dates: "Feb 2026 – May 2026",
     location: "Davidson, NC",
