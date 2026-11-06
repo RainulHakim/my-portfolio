@@ -26,7 +26,7 @@ export const siteConfig = {
   },
 
   about:
-    "I'm a computer science student at Davidson College working across machine learning research and product engineering. Last summer I was at Michigan State's Facility for Rare Isotope Beams, training self-supervised models to read 3D point clouds off a particle detector. During the year I consult on data analytics at Davidson, advise an early-stage startup through the Hurt Hub, and build things people on campus actually use.",
+    "I'm a computer science student at Davidson College working across machine learning research and product engineering. Last summer I was at Michigan State's Facility for Rare Isotope Beams, training self-supervised models to read 3D point clouds off a particle detector. During the year I consult on data analytics at Davidson, build an AI study planner at StudyBuddy, and ship things people on campus actually use.",
 
   contactBlurb:
     "I'm looking for Summer 2027 internships in machine learning, data science and software engineering. If you're hiring, or just want to talk about research, data or something you're building, my inbox is open.",
@@ -232,18 +232,6 @@ export const experience: Experience[] = [
     ],
   },
   {
-    role: "Machine Learning Research Intern",
-    company: "Facility for Rare Isotope Beams (FRIB)",
-    dates: "May 2026 – Aug 2026",
-    location: "East Lansing, MI",
-    bullets: [
-      "Developed a self-supervised DGCNN encoder in PyTorch Geometric for AT-TPC point-cloud data, working toward a reusable foundation model for FRIB experiments",
-      "Used SimCLR-style contrastive learning on 60,795 unlabeled events to reach 88.8% accuracy and 0.886 weighted F1 on 3-class particle-track classification with only ~2.5K labels",
-      "Ran 14+ versioned experiments on an HPC cluster; a physics-based z-rotation augmentation gave the largest gain",
-      "Debugged the point-cloud data pipeline, including a feature-dimension bug and sentinel-value handling, and shared documented code in a cross-institutional research codebase",
-    ],
-  },
-  {
     role: "Tech Consultant",
     company: "DataCATS (Consulting, Analytics, Tutoring Services), Davidson College",
     dates: "Aug 2026 – Present",
@@ -253,13 +241,15 @@ export const experience: Experience[] = [
     ],
   },
   {
-    role: "Software Engineering Intern",
-    company: "The Jay Hurt Hub for Innovation and Entrepreneurship",
-    dates: "Feb 2026 – May 2026",
-    location: "Davidson, NC",
+    role: "Machine Learning Research Intern",
+    company: "Facility for Rare Isotope Beams (FRIB)",
+    dates: "May 2026 – Aug 2026",
+    location: "East Lansing, MI",
     bullets: [
-      "Built the Next.js/React front end and TypeScript API routes for an AI study planner, delivering a working prototype that drew follow-up interest from Davidson faculty and other consultant teams",
-      "Cut malformed AI output reaching users by implementing Zod-validated response schemas and wellbeing guardrails, verified through iterative QA testing",
+      "Developed a self-supervised DGCNN encoder in PyTorch Geometric for AT-TPC point-cloud data, working toward a reusable foundation model for FRIB experiments",
+      "Used SimCLR-style contrastive learning on 60,795 unlabeled events to reach 88.8% accuracy and 0.886 weighted F1 on 3-class particle-track classification with only ~2.5K labels",
+      "Ran 14+ versioned experiments on an HPC cluster; a physics-based z-rotation augmentation gave the largest gain",
+      "Debugged the point-cloud data pipeline, including a feature-dimension bug and sentinel-value handling, and shared documented code in a cross-institutional research codebase",
     ],
   },
   {
