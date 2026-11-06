@@ -22,17 +22,15 @@ export function Hero() {
               <dt className="text-sm text-muted-ink">Based in</dt>
               <dd className="text-sm text-ink">{siteConfig.location}</dd>
             </div>
-            <div className="py-2.5">
-              <dt className="text-sm text-muted-ink">
-                {siteConfig.recently.label}
-              </dt>
-              <dd className="mt-1 text-sm text-ink">
-                {siteConfig.recently.role}
-              </dd>
-              <dd className="text-sm text-muted-ink">
-                {siteConfig.recently.org}, {siteConfig.recently.when}
-              </dd>
-            </div>
+            {[siteConfig.recently, siteConfig.previously].map((r) => (
+              <div key={r.label} className="py-2.5">
+                <dt className="text-sm text-muted-ink">{r.label}</dt>
+                <dd className="mt-1 text-sm text-ink">{r.role}</dd>
+                <dd className="text-sm text-muted-ink">
+                  {r.org}, {r.when}
+                </dd>
+              </div>
+            ))}
           </dl>
         </aside>
       </div>

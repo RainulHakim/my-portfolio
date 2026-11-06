@@ -77,15 +77,29 @@ function Card({ project }: { project: Project }) {
 
       {project.image ? (
         <div className="mt-auto px-7 pb-7 pt-8 sm:px-9 sm:pb-9">
-          {/* Rendered at the image's own ratio: nothing cropped, no letterboxing. */}
-          <Image
-            src={project.image}
-            alt={`${project.name} preview`}
-            width={project.imageSize?.w ?? 1600}
-            height={project.imageSize?.h ?? 900}
-            sizes="(min-width: 1024px) 560px, 85vw"
-            className="h-auto w-full rounded-[3px]"
-          />
+          {project.imageIsLogo ? (
+            // A square logo would dominate at full width, so contain it.
+            <div className="flex aspect-[16/9] w-full items-center justify-center rounded-[3px] bg-white p-8">
+              <Image
+                src={project.image}
+                alt={`${project.name} logo`}
+                width={project.imageSize?.w ?? 364}
+                height={project.imageSize?.h ?? 364}
+                sizes="220px"
+                className="h-full w-auto object-contain"
+              />
+            </div>
+          ) : (
+            /* Rendered at the image's own ratio: nothing cropped, no letterboxing. */
+            <Image
+              src={project.image}
+              alt={`${project.name} preview`}
+              width={project.imageSize?.w ?? 1600}
+              height={project.imageSize?.h ?? 900}
+              sizes="(min-width: 1024px) 560px, 85vw"
+              className="h-auto w-full rounded-[3px]"
+            />
+          )}
         </div>
       ) : (
         <div className="pb-9" />

@@ -186,6 +186,7 @@
   .tone-clay   { --c-bg: #8c3b1e; --c-ink: #fdefe8; --c-eyebrow: #f3c08f; }
   .tone-olive  { --c-bg: #343d1a; --c-ink: #f0f4e2; --c-eyebrow: #bcd94a; }
   .tone-bone   { --c-bg: #e6e4d8; --c-ink: #1a1a14; --c-eyebrow: #5a6b22; }
+  .tone-navy   { --c-bg: #1f2d4d; --c-ink: #eef2fa; --c-eyebrow: #9fb6e0; }
 
   .chip {
     display: inline-flex;
