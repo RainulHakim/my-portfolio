@@ -13,14 +13,20 @@ export const siteConfig = {
 
   /** Shown top-right of the hero. */
   recently: {
-    label: "Most recently",
-    role: "Machine Learning Research Assistant",
+    label: "Currently",
+    role: "Software Engineering Intern",
+    org: "StudyBuddy",
+    when: "Aug 2026 – Present",
+  },
+  previously: {
+    label: "Previously",
+    role: "Machine Learning Research Intern",
     org: "Facility for Rare Isotope Beams",
     when: "Summer 2026",
   },
 
   about:
-    "I'm a computer science student at Davidson College working across machine learning research and product engineering. Last summer I was at Michigan State's Facility for Rare Isotope Beams, training self-supervised models to read 3D point clouds off a particle detector. During the year I consult on data analytics at Davidson, advise an early-stage startup through the Hurt Hub, and build things people on campus actually use.",
+    "I'm a computer science student at Davidson College working across machine learning research and product engineering. Last summer I was at Michigan State's Facility for Rare Isotope Beams, training self-supervised models to read 3D point clouds off a particle detector. During the year I consult on data analytics at Davidson, build an AI study planner at StudyBuddy, and ship things people on campus actually use.",
 
   contactBlurb:
     "I'm looking for Summer 2027 internships in machine learning, data science and software engineering. If you're hiring, or just want to talk about research, data or something you're building, my inbox is open.",
@@ -29,14 +35,13 @@ export const siteConfig = {
 export const education = {
   school: "Davidson College",
   location: "Davidson, NC",
-  degree: "B.S. Computer Science",
+  degree: "B.S. Computer Science, Minor in Data Science",
   graduation: "Expected May 2029",
   coursework: [
     "Data Structures",
     "Database Programming",
     "Linear Algebra",
-    "Calculus I & Modeling",
-    "Calculus II",
+    "Calculus I & II",
   ],
 };
 
@@ -67,6 +72,25 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    name: "StudyBuddy",
+    tone: "tone-navy",
+    kind: "Software engineering",
+    year: "2026",
+    headline: "Piloted with 30 Davidson students",
+    summary:
+      "A weekly study planner built for real student schedules. Plan the week, get unstuck with a study coach, then review what to keep and what to change.",
+    tech: ["Next.js", "React", "TypeScript", "Claude API", "Gemini API", "Zod"],
+    bullets: [
+      "Built the app with Next.js, React and TypeScript API routes, piloted with 30 Davidson students",
+      "Integrated the Claude API with automatic Gemini fallback, keeping AI features up during provider outages",
+      "Made AI output reliable with Zod-validated response schemas and a ~15-case Node.js guardrail test suite",
+    ],
+    image: "/studybuddy-thumbnail.png",
+    imageSize: { w: 1600, h: 1000 },
+    liveUrl: "https://study-buddy-pilot.vercel.app/",
+    liveLabel: "Open the planner",
+  },
+  {
     name: "Foundation Models for AT-TPC Data",
     tone: "tone-ink",
     kind: "Machine learning research",
@@ -95,7 +119,7 @@ export const projects: Project[] = [
     bullets: [
       "Co-founded and built the platform end to end, from pitch to production",
       "Designed a PostgreSQL schema with row-level security, campus-only auth, dietary filtering, and rate-limited push notifications",
-      "Partnered with Davidson Dining and T&I on Davidson One integration",
+      "Partnered with Davidson Dining and Technology & Innovation on an integration with the Davidson One campus app",
     ],
     image: "/ideasprint.webp",
     imageSize: { w: 518, h: 374 },
@@ -104,19 +128,24 @@ export const projects: Project[] = [
     liveLabel: "Read the write-up",
   },
   {
-    name: "Campus Event Discovery Platform",
+    name: "CatCruxis",
     tone: "tone-slate",
-    kind: "Data engineering",
+    kind: "Campus Event Platform",
     year: "2026",
-    headline: "Automated AWS ingestion pipeline",
+    headline: "Data engineering · 3NF PostgreSQL schema, automated AWS ETL",
     summary:
-      "An event discovery platform for Davidson, backed by a PostgreSQL database that an automated AWS pipeline keeps continuously fresh.",
-    tech: ["Python", "PostgreSQL", "AWS Lambda", "Amazon RDS", "API Gateway", "Mapbox"],
+      "Every Davidson event in one place. Listings from WildcatSync, Handshake, the Hurt Hub, department email and student submissions are unified into a single database and surfaced on a searchable map.",
+    tech: ["Python", "PostgreSQL", "AWS Lambda", "Amazon RDS", "EventBridge", "Mapbox", "React"],
     bullets: [
-      "Ingested Davidson event data into a relational PostgreSQL database on Amazon RDS",
-      "Automated extraction, cleaning, and refresh with EventBridge and Lambda",
-      "Built a React/Mapbox interface to filter events by location, date, and category",
+      "Designed a normalized (3NF) PostgreSQL schema unifying events from WildcatSync, Handshake and other campus sources",
+      "Automated an ETL pipeline with EventBridge-scheduled AWS Lambda jobs to extract, clean and load event data into RDS",
+      "Built a React/Mapbox map interface to filter events by location, date and category",
     ],
+    image: "/catcruxis-thumbnail.png",
+    imageSize: { w: 1920, h: 1080 },
+    liveUrl: "https://github.com/Jogarenas/CatCruxis",
+    githubUrl: "https://github.com/Jogarenas/CatCruxis",
+    liveLabel: "Repository",
   },
   {
     name: "Naruto Shadow Clone Jutsu",
@@ -192,14 +221,14 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    role: "Machine Learning Research Assistant",
-    company: "Facility for Rare Isotope Beams (FRIB)",
-    dates: "May 2026 – Aug 2026",
-    location: "East Lansing, MI",
+    role: "Software Engineering Intern",
+    company: "StudyBuddy",
+    dates: "Aug 2026 – Present",
+    location: "Davidson, NC",
     bullets: [
-      "Reached 88.82% accuracy and 88.60% weighted F1 on 3-class track classification by pretraining a DGCNN encoder with SimCLR-style contrastive learning on 60,795 unlabeled AT-TPC events, then fine-tuning via linear probing",
-      "Beat augmentation baselines with a physically motivated rotation scheme, validated by ablation studies",
-      "Trained with PyTorch and PyTorch Geometric on HPC; documented code for a cross-institutional codebase",
+      "Built an AI study-planning app with Next.js, React and TypeScript API routes, piloted with 30 Davidson students",
+      "Integrated the Claude API with automatic Gemini API fallback, keeping AI features up during provider outages",
+      "Made AI output reliable with Zod-validated response schemas and a ~15-case Node.js guardrail test suite",
     ],
   },
   {
@@ -208,18 +237,19 @@ export const experience: Experience[] = [
     dates: "Aug 2026 – Present",
     location: "Davidson, NC",
     bullets: [
-      "Led 85+ consulting sessions and projects for students and faculty on data analysis, statistical modeling and experimental design",
-      "Debug code and data pipelines, and guide regression analysis, hypothesis testing and visualization",
+      "Led 85+ sessions and projects for students and faculty, debugging code and data pipelines and guiding modeling",
     ],
   },
   {
-    role: "Student Consultant",
-    company: "The Jay Hurt Hub for Innovation and Entrepreneurship",
-    dates: "Feb 2026 – May 2026",
-    location: "Davidson, NC",
+    role: "Machine Learning Research Intern",
+    company: "Facility for Rare Isotope Beams (FRIB)",
+    dates: "May 2026 – Aug 2026",
+    location: "East Lansing, MI",
     bullets: [
-      "Built the Next.js/React front end and TypeScript API routes for an AI study planner, delivering a working prototype that drew follow-up interest from Davidson faculty and other consultant teams",
-      "Cut malformed AI output reaching users by implementing Zod-validated response schemas and wellbeing guardrails, verified through iterative QA testing",
+      "Developed a self-supervised DGCNN encoder in PyTorch Geometric for AT-TPC point-cloud data, working toward a reusable foundation model for FRIB experiments",
+      "Used SimCLR-style contrastive learning on 60,795 unlabeled events to reach 88.8% accuracy and 0.886 weighted F1 on 3-class particle-track classification with only ~2.5K labels",
+      "Ran 14+ versioned experiments on an HPC cluster; a physics-based z-rotation augmentation gave the largest gain",
+      "Debugged the point-cloud data pipeline, including a feature-dimension bug and sentinel-value handling, and shared documented code in a cross-institutional research codebase",
     ],
   },
   {
@@ -309,10 +339,32 @@ export type SkillGroup = { label: string; skills: string[] };
 export const skillGroups: SkillGroup[] = [
   {
     label: "Languages",
-    skills: ["Python", "Java", "SQL", "R", "JavaScript/TypeScript", "C", "HTML/CSS"],
+    skills: ["TypeScript", "JavaScript", "Python", "Java", "SQL", "C", "R", "HTML/CSS"],
   },
   {
-    label: "ML / Data Science",
+    label: "Web & Backend",
+    skills: [
+      "React",
+      "Next.js",
+      "Node.js",
+      "Tailwind CSS",
+      "REST APIs",
+      "Zod",
+      "Serverless Functions",
+      "Web Push",
+    ],
+  },
+  {
+    label: "Cloud & Databases",
+    skills: [
+      "PostgreSQL",
+      "Supabase",
+      "AWS (Lambda, RDS, API Gateway, EventBridge)",
+      "Vercel",
+    ],
+  },
+  {
+    label: "ML & Data",
     skills: [
       "PyTorch",
       "PyTorch Geometric",
@@ -322,23 +374,10 @@ export const skillGroups: SkillGroup[] = [
       "MediaPipe",
       "NumPy",
       "Pandas",
-      "Matplotlib",
-    ],
-  },
-  {
-    label: "Web & Backend",
-    skills: [
-      "React",
-      "Next.js",
-      "Node.js",
-      "REST APIs",
-      "Vercel Serverless Functions",
-      "Supabase",
-      "PostgreSQL",
     ],
   },
   {
     label: "Tools",
-    skills: ["Git", "GitHub", "AWS", "Linux", "HPC Clusters", "Mapbox", "Quarto", "VS Code"],
+    skills: ["Git", "GitHub", "Linux", "VS Code", "Jupyter", "HPC Clusters", "Mapbox", "Claude Code", "Codex"],
   },
 ];
