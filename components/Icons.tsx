@@ -93,3 +93,47 @@ export const Moon = ({ className }: P) => (
     <path d="M13.4 9.6A5.9 5.9 0 0 1 6.4 2.6a5.9 5.9 0 1 0 7 7z" />
   </svg>
 );
+
+export const ArrowUp = ({ className }: P) => (
+  <svg {...base} className={className}>
+    <path d="M8 13.5v-11M3.5 6.5 8 2l4.5 4.5" />
+  </svg>
+);
+
+export const Menu = ({ className }: P) => (
+  <svg {...base} className={className}>
+    <path d="M2 4.5h12M2 8h12M2 11.5h12" />
+  </svg>
+);
+
+export const Close = ({ className }: P) => (
+  <svg {...base} className={className}>
+    <path d="m3.2 3.2 9.6 9.6M12.8 3.2l-9.6 9.6" />
+  </svg>
+);
+
+export const Plus = ({ className }: P) => (
+  <svg {...base} className={className}>
+    <path d="M8 2.5v11M2.5 8h11" />
+  </svg>
+);
+
+/** Four squares: the grid view. */
+export const Grid = ({ className }: P) => (
+  <svg {...base} className={className}>
+    <path d="M2.5 2.5h4.4v4.4H2.5zM9.1 2.5h4.4v4.4H9.1zM2.5 9.1h4.4v4.4H2.5zM9.1 9.1h4.4v4.4H9.1z" />
+  </svg>
+);
+
+/** One full card and the edge of the next: the slide view. */
+export const Slides = ({ className }: P) => (
+  <svg {...base} className={className}>
+    <path d="M2.5 3h7.5v10H2.5zM12.6 3v10" />
+  </svg>
+);
+
+export const Chain = ({ className }: P) => (
+  <svg {...base} className={className}>
+    <path d="M6.6 9.4 9.4 6.6M7.2 4.4l1-1a3.1 3.1 0 0 1 4.4 4.4l-1 1M8.8 11.6l-1 1a3.1 3.1 0 0 1-4.4-4.4l1-1" />
+  </svg>
+);

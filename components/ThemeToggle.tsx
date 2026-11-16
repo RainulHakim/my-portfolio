@@ -54,7 +54,7 @@ export function ThemeToggle() {
       aria-label={
         theme === "dark" ? "Switch to light theme" : "Switch to dark theme"
       }
-      className="rounded-lg border border-line p-2.5 text-muted-ink transition-colors hover:border-ink hover:text-ink"
+      className="rounded-[6px] border border-line p-2.5 text-muted-ink transition-colors hover:border-ink hover:text-ink"
     >
       <Sun className="theme-icon-sun h-[18px] w-[18px]" />
       <Moon className="theme-icon-moon h-[18px] w-[18px]" />

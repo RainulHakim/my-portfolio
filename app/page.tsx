@@ -1,10 +1,10 @@
+import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import { siteConfig, education } from "@/data/portfolio";
 import { Hero } from "@/components/sections/Hero";
 import { Work } from "@/components/sections/Work";
 import { Experience } from "@/components/sections/Experience";
 import { About } from "@/components/sections/About";
-import { Leadership } from "@/components/sections/Leadership";
 import { Contact } from "@/components/sections/Contact";
 
 /** Structured data, so search and recruiter tools can read the basics. */
@@ -17,7 +17,12 @@ const personSchema = {
   image: "https://rainulhakim.vercel.app" + siteConfig.headshot,
   jobTitle: "Computer Science Student",
   description: siteConfig.about,
-  address: { "@type": "PostalPlace", name: siteConfig.location },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Davidson",
+    addressRegion: "NC",
+    addressCountry: "US",
+  },
   alumniOf: {
     "@type": "CollegeOrUniversity",
     name: education.school,
@@ -46,9 +51,9 @@ export default function Home() {
         <Work />
         <Experience />
         <About />
-        <Leadership />
         <Contact />
       </main>
+      <Footer />
     </>
   );
 }

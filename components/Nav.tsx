@@ -1,16 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { CommandPalette } from "@/components/CommandPalette";
+import { MobileMenu } from "@/components/MobileMenu";
+import { sections } from "@/components/nav-links";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { siteConfig } from "@/data/portfolio";
-
-const links = [
-  { label: "Work", href: "#work" },
-  { label: "Experience", href: "#experience" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
-];
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -23,13 +18,14 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Highlight whichever section crosses the middle band of the viewport.
   useEffect(() => {
-    const observers = links.map((l) => {
-      const el = document.getElementById(l.href.slice(1));
+    const observers = sections.map((s) => {
+      const el = document.getElementById(s.id);
       if (!el) return null;
       const io = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) setActive(l.href);
+          if (entry.isIntersecting) setActive(s.id);
         },
         { rootMargin: "-40% 0px -55% 0px" }
       );
@@ -41,10 +37,8 @@ export function Nav() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-colors ${
-        scrolled
-          ? "border-b border-line bg-[var(--bg)]"
-          : "border-b border-transparent"
+      className={`sticky top-0 z-50 border-b bg-[var(--bg)] transition-colors ${
+        scrolled ? "border-line" : "border-transparent"
       }`}
     >
       <a
@@ -54,32 +48,40 @@ export function Nav() {
         Skip to work
       </a>
 
-      <nav className="flex h-16 items-center justify-between gap-4 px-[var(--gutter)]">
-        <a href="#top" className="text-[0.9375rem] font-semibold tracking-tight text-ink">
+      <nav
+        aria-label="Primary"
+        className="flex h-16 items-center justify-between gap-4 px-[var(--gutter)]"
+      >
+        <a
+          href="#top"
+          className="text-[0.9375rem] font-semibold tracking-tight text-ink"
+        >
           {siteConfig.name}
         </a>
 
         <div className="flex items-center gap-1.5 sm:gap-2">
           <div className="hidden items-center md:flex">
-            {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className={`rounded-md px-3 py-2 text-sm transition-colors ${
-                  active === l.href
-                    ? "text-ink"
-                    : "text-muted-ink hover:text-ink"
-                }`}
-              >
-                {l.label}
-                <span
-                  aria-hidden="true"
-                  className={`mx-auto mt-1 block h-px bg-brand transition-all ${
-                    active === l.href ? "w-full opacity-100" : "w-0 opacity-0"
+            {sections.map((s) => {
+              const on = active === s.id;
+              return (
+                <a
+                  key={s.id}
+                  href={`#${s.id}`}
+                  aria-current={on ? "true" : undefined}
+                  className={`group px-3 py-2 text-sm transition-colors ${
+                    on ? "text-ink" : "text-muted-ink hover:text-ink"
                   }`}
-                />
-              </a>
-            ))}
+                >
+                  {s.label}
+                  <span
+                    aria-hidden="true"
+                    className={`mt-1 block h-px origin-left bg-[var(--brand)] transition-transform duration-300 ${
+                      on ? "scale-x-100" : "scale-x-0 group-hover:scale-x-50"
+                    }`}
+                  />
+                </a>
+              );
+            })}
           </div>
 
           <CommandPalette />
@@ -89,10 +91,12 @@ export function Nav() {
             href={siteConfig.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-lg border border-line px-3.5 py-2 text-sm font-medium text-ink transition-colors hover:border-ink"
+            className="rounded-[6px] border border-line px-3.5 py-2 text-sm font-medium text-ink transition-colors hover:border-ink"
           >
             Résumé
           </a>
+
+          <MobileMenu />
         </div>
       </nav>
     </header>

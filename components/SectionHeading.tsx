@@ -1,30 +1,27 @@
+/** Numbered kicker plus title: the same opening for every section. */
 export function SectionHeading({
+  index,
   kicker,
   title,
-  action,
+  children,
 }: {
+  index: string;
   kicker: string;
   title: string;
-  action?: { label: string; href: string };
+  /** Optional element aligned to the right of the title. */
+  children?: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-wrap items-end justify-between gap-4 border-b border-line pb-6">
+    <div className="reveal flex flex-wrap items-end justify-between gap-4 border-b border-line pb-6">
       <div>
-        <p className="eyebrow">{kicker}</p>
-        <h2 className="mt-2 text-[clamp(2rem,4.5vw,3.1rem)] font-semibold leading-[1.02] tracking-[-0.04em] text-ink">
+        <p className="eyebrow text-[0.95rem] tracking-[0.1em]">
+          {index} · {kicker}
+        </p>
+        <h2 className="mt-2.5 text-[clamp(2rem,4.5vw,3.1rem)] font-semibold leading-[1.02] tracking-[-0.04em] text-ink">
           {title}
         </h2>
       </div>
-      {action ? (
-        <a
-          href={action.href}
-          target={action.href.startsWith("http") || action.href.endsWith(".pdf") ? "_blank" : undefined}
-          rel="noopener noreferrer"
-          className="link-underline text-sm font-medium text-ink-2 hover:text-ink"
-        >
-          {action.label} →
-        </a>
-      ) : null}
+      {children}
     </div>
   );
 }
