@@ -47,7 +47,19 @@ export const education = {
 
 // ─── Projects ──────────────────────────────────────────────────────────────
 
+export type ProjectCategory = "product" | "ml" | "data-web";
+
+/** Filter tabs for the work section, in display order. */
+export const projectCategories: { key: ProjectCategory; label: string }[] = [
+  { key: "product", label: "Products" },
+  { key: "ml", label: "ML & Research" },
+  { key: "data-web", label: "Data & Web" },
+];
+
 export type Project = {
+  /** Stable id used in shareable links (#project-<slug>). */
+  slug: string;
+  category: ProjectCategory;
   name: string;
   /** Short category shown above the title. */
   kind: string;
@@ -72,6 +84,8 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "studybuddy",
+    category: "product",
     name: "StudyBuddy",
     tone: "tone-navy",
     kind: "Software engineering",
@@ -91,6 +105,8 @@ export const projects: Project[] = [
     liveLabel: "Open the planner",
   },
   {
+    slug: "frib",
+    category: "ml",
     name: "Foundation Models for AT-TPC Data",
     tone: "tone-ink",
     kind: "Machine learning research",
@@ -108,6 +124,8 @@ export const projects: Project[] = [
     imageSize: { w: 1600, h: 1200 },
   },
   {
+    slug: "catfound",
+    category: "product",
     name: "CatFound",
     tone: "tone-teal",
     kind: "Campus Lost & Found",
@@ -127,6 +145,8 @@ export const projects: Project[] = [
     liveLabel: "Open CatFound",
   },
   {
+    slug: "left-no-crumbs",
+    category: "product",
     name: "Left No Crumbs",
     tone: "tone-lime",
     kind: "Product · 1st place, IdeaSprint",
@@ -147,6 +167,8 @@ export const projects: Project[] = [
     liveLabel: "Read the write-up",
   },
   {
+    slug: "catcruxis",
+    category: "data-web",
     name: "CatCruxis",
     tone: "tone-slate",
     kind: "Campus Event Platform",
@@ -167,6 +189,8 @@ export const projects: Project[] = [
     liveLabel: "Repository",
   },
   {
+    slug: "shadow-clone",
+    category: "ml",
     name: "Naruto Shadow Clone Jutsu",
     tone: "tone-clay",
     kind: "Computer vision",
@@ -187,6 +211,8 @@ export const projects: Project[] = [
     liveLabel: "Repository",
   },
   {
+    slug: "alternate",
+    category: "product",
     name: "AlternAte",
     tone: "tone-olive",
     kind: "AI product",
@@ -206,6 +232,8 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/RainulHakim/alternate-app",
   },
   {
+    slug: "faculty-websites",
+    category: "data-web",
     name: "Faculty Websites",
     tone: "tone-bone",
     kind: "Web · Davidson College",

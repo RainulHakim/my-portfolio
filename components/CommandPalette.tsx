@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowOut, Copy, Doc, Mail, Search } from "@/components/Icons";
-import { siteConfig } from "@/data/portfolio";
+import { projects, siteConfig } from "@/data/portfolio";
+import { openProject } from "@/lib/project-link";
 
 type Item = {
   label: string;
@@ -29,6 +30,16 @@ export function CommandPalette() {
       { label: "Experience", hint: "Roles and dates", icon: Search, run: () => go("#experience") },
       { label: "About", hint: "Bio, education, skills", icon: Search, run: () => go("#about") },
       { label: "Contact", hint: "Get in touch", icon: Search, run: () => go("#contact") },
+      ...projects.map((p) => ({
+        label: p.name,
+        hint: `Project · ${p.kind}`,
+        icon: Search,
+        run: () => {
+          setOpen(false);
+          document.querySelector("#work")?.scrollIntoView();
+          openProject(p.slug);
+        },
+      })),
       {
         label: "Open résumé",
         hint: "PDF",
@@ -117,7 +128,7 @@ export function CommandPalette() {
       <button
         type="button"
         onClick={show}
-        className="hidden items-center gap-2 rounded-lg border border-line px-3 py-2 text-sm text-muted-ink transition-colors hover:border-ink hover:text-ink sm:inline-flex"
+        className="hidden items-center gap-2 rounded-[6px] border border-line px-3 py-2 text-sm text-muted-ink transition-colors hover:border-ink hover:text-ink sm:inline-flex"
       >
         <Search className="h-3.5 w-3.5" />
         <span>Jump to…</span>
@@ -138,7 +149,7 @@ export function CommandPalette() {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-lg overflow-hidden border border-line bg-[var(--surface)]"
+        className="w-full max-w-lg overflow-hidden rounded-[8px] border border-line bg-[var(--surface)] [animation:sheet-in_0.22s_var(--ease-out)]"
       >
         <div className="flex items-center gap-3 border-b border-line px-4">
           <Search className="h-4 w-4 shrink-0 text-muted-ink" />
@@ -164,7 +175,7 @@ export function CommandPalette() {
                 results[active]?.run();
               }
             }}
-            placeholder="Jump to a section, résumé, email…"
+            placeholder="Jump to a section, project, résumé…"
             className="w-full bg-transparent py-4 text-[0.95rem] text-ink outline-none placeholder:text-muted-ink"
           />
         </div>
@@ -182,7 +193,7 @@ export function CommandPalette() {
                     type="button"
                     onMouseEnter={() => setActive(i)}
                     onClick={item.run}
-                    className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left transition-colors ${
+                    className={`flex w-full items-center gap-3 rounded-[4px] px-3 py-2.5 text-left transition-colors ${
                       i === active ? "bg-[var(--bg-2)]" : ""
                     }`}
                   >
